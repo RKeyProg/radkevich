@@ -1,0 +1,32 @@
+.square-btns {
+    display: flex;
+    flex-direction: column;
+}
+
+.square-btns__item {
+    width: 53px;
+    height: 53px;
+    background-color: $text-color_dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_prev {
+        & .square-btns__item-img {
+            transform: rotate(180deg);
+        }
+    }
+
+    &:hover {
+        & .square-btns__item-img {
+            fill: $text-color_light; 
+        }
+    }
+}
+
+.square-btns__item-img {
+    width: 17px;
+    height: 20px;
+    fill: rgba($text-color_light, .5);
+    transition: all .3s ease;
+}

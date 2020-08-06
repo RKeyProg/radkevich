@@ -26,3 +26,10 @@ mixin data-table(className, items)
       tr(class=`${className}-row`)
         td(class=`${className}-title`) #{item[0]}
         td(class=`${className}-content`) #{item[1]}
+
+mixin taglist(className, tags)
+  ul(class=`${className}`)
+    each item in tags
+      li(class=`${className}__item`)
+        .tag #{item}
+        
