@@ -5,3 +5,24 @@ mixin icon(name, className)
 
 mixin image(path, className)
   img(src=require(`images/${path}`).default class=className)
+
+mixin nav(className, items, activeClass)
+  nav(class=`${className}`)
+    ul(class=`${className}__list`)
+      each item in items
+        li(class=`${className}__item`)
+          a(class=`${className}__link` href="#")= item
+
+mixin socials(className)
+  ul(class=`${className}`)
+    each social in ['insta', 'github', 'vk', 'envelope']
+      li(class=`${className}__item`)
+        a(href="#" class=`${className}__link`)
+          +icon(`${social}`, `${className}__icon`)
+
+mixin data-table(className, items)
+  table(class=`${className}`)
+    each item in items
+      tr(class=`${className}-row`)
+        td(class=`${className}-title`) #{item[0]}
+        td(class=`${className}-content`) #{item[1]}

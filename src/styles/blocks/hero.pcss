@@ -1,0 +1,33 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero__container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 58px 0 35px 0;
+}
+
+.hero__btn-down {
+    display: flex;
+    align-items: center;
+    color: #fff;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 14px;
+        height: 14px;
+        background: svg-load('scroll.svg', fill=white, width=100%, height=100%);
+        margin-left: 15px;
+    }
+}
+
+.hero__btn {
+    display: flex;
+    justify-content: center;
+}

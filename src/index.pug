@@ -1,15 +1,32 @@
-include ./mixins.pug
+extends ./main.layout.pug
 
-<!DOCTYPE html>
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title Portfolio | main page
-  body
-    .wrapper
-      .maincontent
-        +image('content/user.jpg', 'user-pic')
-        +icon('link', 'link-class')
-        .icon-bg
+block content
+  .welcome-section
+    section.hero
+      .container.hero__container
+        header.header
+          a.logo(href="#") BA
+          +nav("menu", ['Обо мне', 'Навыки', 'Работы', 'Отзывы'])
+          +socials('socials')
+
+        .userinfo
+          .userinfo__title Личный сайт #[br] веб разработчика
+          h1.userinfo__name Владимир Астаханов
+          
+        .hero__btn
+          button.hero__btn-down Скролл
+    section.about
+      .container.about__container
+        .about__user
+          .user
+            .user__avatar
+              .user__avatar-style
+                +image('content/user.jpg', 'user__avatar-img')
+            +data-table('user__data', [["Проживаю", "Новосибирск"], ["Возраст", "27 лет"], ["Родился", "1 января 1991"]])
+        .about__content
+          .about__desc Привет, меня зовут
+          h2.about__title Владимир Астаханов
+          .about__text-info
+            p Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+          .about__ps Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+            
