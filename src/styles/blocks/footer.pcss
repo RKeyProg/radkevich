@@ -1,0 +1,76 @@
+.footer {
+    background-color: $footer-bg;
+
+    & .container {
+        padding: 70px 0 74px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.footer__copyright {
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 65px;
+    color: rgba($text-color_light, .3);
+    white-space: nowrap;
+    margin-right: 56px;
+}
+
+.footer__userinfo {
+    padding-right: 6%;
+}
+
+.footer__userinfo-name {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 30px;
+    color: $text-color_light;
+    text-transform: uppercase;
+    width: 15%;
+    margin-bottom: 16px;
+}
+
+.footer__userinfo-title {
+    font-size: 16px;
+    line-height: 30px;
+    color: rgba($text-color_light, .3);
+}
+
+.footer-info__desc {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__menu {
+    margin-bottom: 48px;
+}
+
+.footer-info {
+    flex: 1;
+}
+
+.footer-info__parag {
+    font-size: 16px;
+    line-height: 30px;
+    color: rgba($text-color_light, .6);
+    margin-bottom: 40px;
+}
+
+.footer-info__col {
+
+    &_left {
+        padding-right: 19%; 
+    }
+
+    &_right .footer-info__parag {
+        margin-bottom: 31px;
+    }
+}
+
+.footer-info__parag-author {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+}

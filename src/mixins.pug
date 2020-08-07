@@ -13,12 +13,17 @@ mixin nav(className, items, activeClass)
         li(class=`${className}__item`)
           a(class=`${className}__link` href="#")= item
 
-mixin socials(className)
+mixin socials(className, items, modifier)
   ul(class=`${className}`)
-    each social in ['insta', 'github', 'vk', 'envelope']
-      li(class=`${className}__item`)
-        a(href="#" class=`${className}__link`)
-          +icon(`${social}`, `${className}__icon`)
+    each item in items
+      if modifier
+        li(class=`${className}__item ${modifier}`)
+          a(href="#" class=`${className}__link`)
+            +icon(`${item}`, `${className}__icon`)
+      else
+        li(class=`${className}__item`)
+          a(href="#" class=`${className}__link`)
+            +icon(`${item}`, `${className}__icon`)
 
 mixin data-table(className, items)
   table(class=`${className}`)
@@ -30,6 +35,5 @@ mixin data-table(className, items)
 mixin taglist(className, tags)
   ul(class=`${className}`)
     each item in tags
-      li(class=`${className}__item`)
-        .tag #{item}
+      li(class=`${className}__item`) #{item}
         
