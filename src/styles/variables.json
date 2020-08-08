@@ -8,6 +8,8 @@
   "errors-color": "#cd1515",
   "footer-bg": "#222427",
   "z-slider": "20",
+  "z-section": "10",
+  "z-bg": "5",
   "z-slider-btn": "25",
   "bp-desktop-hd": "1800px",
   "bp-desktop": "1200px",

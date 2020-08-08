@@ -1,4 +1,17 @@
 .quote {
+    display: flex;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 65px;
+        max-height: 57px;
+        background: svg-load('quote.svg', fill="#303133") center center / cover no-repeat;
+        margin-right: 21px;
+    }
+}
+
+.quote__wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
