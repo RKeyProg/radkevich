@@ -18,11 +18,11 @@ mixin socials(className, items, modifier)
     each item in items
       if modifier
         li(class=`${className}__item ${modifier}`)
-          a(href="#" class=`${className}__link`)
+          a(href="#" target="_blank" class=`${className}__link`)
             +icon(`${item}`, `${className}__icon`)
       else
         li(class=`${className}__item`)
-          a(href="#" class=`${className}__link`)
+          a(href="#" target="_blank" class=`${className}__link`)
             +icon(`${item}`, `${className}__icon`)
 
 mixin data-table(className, items)
