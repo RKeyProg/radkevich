@@ -1,0 +1,56 @@
+.slider__header {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 57%;
+    margin-bottom: 78px;
+}
+
+.slider__buttons {
+    display: flex;
+}
+
+.slider__btn {
+    width: 53px;
+    height: 53px;
+    margin-right: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::after {
+        content: "";
+        display: block;
+        background: svg-load('arrow-down.svg', fill=$text-color_light, width=100%, height=100%) center center / cover no-repeat;
+        width: 17px;
+        height: 20px;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.slider__content {
+    display: flex;
+    align-items: stretch;
+    padding-right: 36%;
+}
+
+.slider__item {
+    width: 50%;
+    margin-right: 59px;
+    display: flex;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &::before {
+        content: "";
+        display: block;
+        width: 87px;
+        height: 72px;
+        background: svg-load('quote.svg', fill="#303133") center center / cover no-repeat;
+        margin-right: 21px;
+    }
+}

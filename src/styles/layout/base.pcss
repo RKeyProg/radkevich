@@ -1,4 +1,6 @@
 html {
+  font-size: 16px;
+
   @include desktop {
     font-size: 15px;
   }
@@ -13,11 +15,10 @@ html {
 
 body {
   font-family: 'Open Sans', Helvetica, sans-serif;
-  font-size: 16px;
   line-height: 1.42;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $text-color;
+  color: $text-color_light;
 }
 
 .wrapper {
@@ -28,9 +29,9 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 1480px;
-  width: 95%;
-  // width: 1490px;
+  /* max-width: 1480px;
+  width: 95%; */
+  width: 1497px;
 
   @include phones {
     width: 85%;
@@ -45,6 +46,12 @@ body {
 button {
   border: 0;
   cursor: pointer;
+  background: transparent;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 * {
@@ -55,6 +62,8 @@ ul {
   padding: 0;
   margin: 0;
   list-style: none;
+  display: flex;
+  align-items: center;
 }
 
 h1,
@@ -72,17 +81,18 @@ p {
   padding: 0;
 }
 
-button[type="button"] {
-  cursor: pointer;
-  background-color: transparent;
+td {
+  padding: 0;
 }
 
 a {
+  text-decoration: none;
   color: inherit;
   cursor: pointer;
+  transition: all .3s ease;
 }
 
-img {
+img, svg {
   display: block;
   max-width: 100%;
   max-height: 100%;

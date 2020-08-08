@@ -1,0 +1,37 @@
+.values {
+    padding: 144px 0;
+    position: relative;
+    background: url('~images/content/skillsBG.jpg') center top / cover no-repeat;
+
+    &::before {
+        content: '';
+        display: block;
+        background: url('~images/content/keyboard.png') 100% / cover no-repeat;
+        width: 37%;
+        height: 97%;
+        position: absolute;
+        left: 0;
+        bottom: -95px;
+    }
+}
+
+.values__title {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 0 79px 37%;
+}
+
+.values__title-text {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 41px;
+    margin-bottom: 53px;
+}
+
+.values__content {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 30px;
+    color: rgba($text-color_light, .8);
+}
