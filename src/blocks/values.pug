@@ -11,15 +11,15 @@ section.values
             ["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
           ]
         ul.skills
+          svg.skills__gradient
+            linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="0%")
+              stop(offset="0%" stop-color="#D0731B")
+              stop(offset="100%" stop-color="#DC9322")
           each category in skillsCategories
             li.skills__item
               .skills-row
                 h4.skills-row__title #{category[0]}
                 ul.skills-row__list
-                  svg.skills__gradient
-                    linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="0%")
-                      stop(offset="0%" stop-color="#D0731B")
-                      stop(offset="100%" stop-color="#DC9322")
                   each skill in category[1]
                     li.skills-row__item
                       .skill

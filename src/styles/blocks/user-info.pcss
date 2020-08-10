@@ -3,12 +3,20 @@
     flex-direction: column;
     align-items: center;
     width: 347px;
+
+    @include tablets {
+        width: auto;
+    }
 }
 
 .user-info__avatar {
-    width: 200px;
-    height: 200px;
+    width: 200PX;
+    height: 200PX;
     margin-bottom: 65px;
+
+    @include tablets {
+        margin-bottom: 21px;
+    }
 }
 
 .user-info__data {

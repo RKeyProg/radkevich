@@ -1,7 +1,14 @@
+.thumbs {
+    justify-content: flex-end;
+}
+
 .thumbs__item {
     width: 178px;
-    height: 100px;
     position: relative;
+
+    @include desktop {
+        width: 24%;
+    }
 }
 
 .thumbs__link {

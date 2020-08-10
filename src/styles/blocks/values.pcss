@@ -7,19 +7,44 @@
         content: '';
         display: block;
         background: url('~images/content/keyboard.png') 100% / cover no-repeat;
-        width: 58vmin;
-        height: 86vmin;
+        width: 37vw;
+        height: 57vw;
         position: absolute;
         left: 0;
         bottom: -90px;
+        z-index: $z-before;
+
+        @include desktop {
+            bottom: -70px;
+        }
+
+        @include tablets {
+            transform: rotate(-90deg) translate(-27%, -32%);
+            bottom: 0;
+            left: 50%
+        }
+    }
+
+    @include tablets {
+        padding: 90px 0 335px;
+        overflow: hidden
     }
 }
 
 .values__title {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 600px;
     margin: 0 0 79px 40%;
+
+    @include desktop {
+        margin: 0 auto 79px auto;
+    }
+
+    @include tablets {
+        text-align: center;
+        width: 540px;
+    }
 }
 
 .values__title-text {

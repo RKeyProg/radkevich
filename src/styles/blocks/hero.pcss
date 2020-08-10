@@ -12,6 +12,10 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 58px 0 60px;
+
+    @include tablets {
+        justify-content: flex-start;
+    }
 }
 
 .hero__btn-down {
@@ -34,4 +38,8 @@
 .hero__btn {
     display: flex;
     justify-content: center;
+
+    @include tablets {
+        display: none;
+    }
 }

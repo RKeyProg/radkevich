@@ -1,12 +1,11 @@
 .slider__header {
     display: flex;
-    justify-content: space-between;
-    padding-right: 54%;
     margin-bottom: 78px;
 }
 
 .slider__buttons {
     display: flex;
+    margin-left: 6%;
 }
 
 .slider__btn {
@@ -33,15 +32,18 @@
 .slider__content {
     display: flex;
     align-items: stretch;
-    padding-right: 30%;
 }
 
 .slider__item {
-    width: 50%;
-    margin-right: 59px;
+    max-width: 415px;
+    margin-right: 4%;
     display: flex;
 
     &:last-child {
         margin-right: 0;
+    }
+
+    @include tablets {
+        margin-right: 2%;
     }
 }
