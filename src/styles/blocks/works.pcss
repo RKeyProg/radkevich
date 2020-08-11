@@ -28,7 +28,7 @@
     max-width: 975px;
     height: 100%;
     position: relative;
-    margin-right: 11%;
+    margin-right: 9vw;
 
     &:before {
         content: attr(data-slide);
@@ -39,7 +39,7 @@
         line-height: 1;
         font-size: 400px;
         font-weight: 800;
-        transform: translateX(10vw);
+        transform: translateX(9vw);
 
         @include desktop {
             top: 15%;
@@ -50,10 +50,18 @@
             top: 37%;
             transform: translateX(15vw);
         }
+
+        @include phones {
+            display: none;
+        }
     }
 
     @include tablets {
         margin-bottom: 56px;
+    }
+
+    @include phones {
+        margin-right: 0;
     }
 }
 
@@ -66,6 +74,10 @@
     position: absolute;
     bottom: 10%;
     right: 0;
+
+    @include phones {
+        display: none;
+    }
 }
 
 .works-preview__btns {
@@ -75,6 +87,12 @@
 
     @include desktop  {
         right: -34px;
+    }
+
+    @include phones {
+        right: 0;
+        bottom: 0;
+        z-index: $z-slider-btn;
     }
 }
 
@@ -89,6 +107,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    @include phones {
+        width: 100%;
+        text-align: left;
+        align-items: flex-start;
     }
 }
 

@@ -12,6 +12,10 @@
     @include tablets {
         padding: 110px 0 148px;
     }
+
+    @include phones {
+        flex-direction: column;
+    }
 }
 
 .about__user {
@@ -23,6 +27,11 @@
         width: auto;
         flex: 1;
     }
+
+    @include phones {
+        width: 100%;
+        margin-bottom: 45px;
+    }
 }
 
 .about__content {
@@ -32,6 +41,12 @@
 
     @include tablets {
         width: 432px;
+        margin-left: 4.5vmax;
+    }
+
+    @include phones {
+        width: 100%;
+        margin-left: 8vmin;
     }
 }
 
@@ -52,7 +67,7 @@
     margin-bottom: 31px;
 
     @include tablets {
-        font-size: 30px;
+        font-size: 30PX;
     }
 }
 
@@ -67,6 +82,10 @@
 
     @include tablets {
         margin-bottom: 36px;
+    }
+
+    @include phones {
+        margin-bottom: 62px;
     }
 }
 
@@ -90,5 +109,14 @@
         line-height: 65px;
         color: rgba(219, 2, 0, 0.5);
         align-self: flex-end;
+
+        @include tablets {
+            left: -4.5vmax;
+        }
+
+        @include phones {
+            left: -8vmin;
+            font-size: 36px;
+        }
     }
 }

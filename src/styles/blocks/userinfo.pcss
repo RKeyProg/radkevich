@@ -11,6 +11,10 @@
         margin-top: 105px;
         flex-direction: column;
     }
+    
+    @include phones {
+        margin-top: 50%;
+    }
 }
 
 .userinfo__title {
@@ -25,6 +29,12 @@
         text-align: center;
         margin: 0 0 24px;
     }
+    
+    @include phones {
+        font-size: 14px;
+        line-height: 19px;
+        margin: 0 0 7px;
+    }
 }
 
 .userinfo__name {
@@ -37,5 +47,10 @@
     @include tablets {
         flex-basis: auto;
         text-align: center;
+    }
+    
+    @include phones {
+        font-size: 36px;
+        line-height: 48px;
     }
 }

@@ -5,12 +5,15 @@
         padding: 70px 0 74px;
         display: flex;
         justify-content: space-between;
+        
+        @include phones {
+            flex-direction: column;
+        }
     }
 }
 
 .footer-person-info {
     display: flex;
-    justify-content: space-between;
     width: 444px;
     margin-right: 2%;
 
@@ -27,7 +30,6 @@
     line-height: 65px;
     color: rgba($text-color_light, .3);
     white-space: nowrap;
-    /* margin-right: 56px; */
 
     @include desktop {
         margin-bottom: 24px;
@@ -35,17 +37,25 @@
 }
 
 .footer__userinfo {
-    /* padding-right: 4%; */
+    margin: 0 0 45px 56px;
+
+    @include desktop {
+        margin-left: 0;
+    }
 }
 
 .footer__userinfo-name {
+    width: min-content;
     font-weight: bold;
     font-size: 18px;
     line-height: 30px;
     color: $text-color_light;
     text-transform: uppercase;
-    width: 15%;
     margin-bottom: 16px;
+
+    @include phones {
+        width: 100%;
+    }
 }
 
 .footer__userinfo-title {
@@ -116,6 +126,14 @@
 
     @include tablets {
         margin-bottom: 51px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    @include phones {
+        margin-bottom: 31px;
 
         &:last-child {
             margin-bottom: 0;
