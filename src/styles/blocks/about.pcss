@@ -13,7 +13,7 @@
         padding: 110px 0 148px;
     }
 
-    @include phones {
+    @include between-tab-phon {
         flex-direction: column;
     }
 }
@@ -28,7 +28,7 @@
         flex: 1;
     }
 
-    @include phones {
+    @include between-tab-phon {
         width: 100%;
         margin-bottom: 45px;
     }
@@ -44,9 +44,12 @@
         margin-left: 4.5vmax;
     }
 
+    @include between-tab-phon {
+        margin-left: 0;
+    }
+
     @include phones {
         width: 100%;
-        margin-left: 8vmin;
     }
 }
 
@@ -84,7 +87,7 @@
         margin-bottom: 36px;
     }
 
-    @include phones {
+    @include between-tab-phon {
         margin-bottom: 62px;
     }
 }
@@ -115,7 +118,7 @@
         }
 
         @include phones {
-            left: -8vmin;
+            left: -30px;
             font-size: 36px;
         }
     }

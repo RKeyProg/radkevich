@@ -29,6 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity .3s ease;
 
     &::after {
         content: "";
@@ -41,10 +42,14 @@
     &:last-child {
         margin-right: 0;
     }
-}
 
-.swiper-slide {
-    height: 100% !important;
+    &:disabled {
+        opacity: .5;
+
+        &:hover {
+            cursor: default;
+        }
+    }
 }
 
 .slider__content {

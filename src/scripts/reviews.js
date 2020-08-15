@@ -16,8 +16,9 @@ new Vue({
     data() {
         return {
             reviews: [],
+            isEnd: false,
+            isBeginning: true,
             sliderOptions: {
-                autoHeight: true,
                 breakpoints: {
                     320: {
                         slidesPerView: 1
@@ -34,6 +35,13 @@ new Vue({
         }
     },
     methods: {
+        checkPosition(slider) {
+            this.$nextTick(() => {
+                this.isEnd = slider.isEnd;
+                this.isBeginning = slider.isBeginning;
+                console.log(this.isBeginning, this.isEnd);
+            });
+        },
         requireImagesToArray(data) {
             return data.map((item) => {
                 const requiredImage = require(`../images/content/${item.img}`).default;
@@ -45,9 +53,11 @@ new Vue({
             const slider = this.$refs['slider'].$swiper;
             switch (direction) {
                 case 'next':
+                    this.checkPosition(slider);
                     slider.slideNext();
                     break;
                 case 'prev':
+                    this.checkPosition(slider);
                     slider.slidePrev();
                     break;
             }
@@ -63,6 +73,6 @@ new Vue({
         this.reviews = this.requireImagesToArray(data);
     },
     mounted() {
-        
+        if (this.swiper.isEnd) console.log("true");
     }
 })
