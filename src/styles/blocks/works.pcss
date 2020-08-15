@@ -61,6 +61,7 @@
     }
 
     @include phones {
+        width: 100vw;
         margin-right: 0;
     }
 }
@@ -74,6 +75,7 @@
     position: absolute;
     bottom: 10%;
     right: 0;
+    z-index: $z-slider-btn;
 
     @include phones {
         display: none;
@@ -99,6 +101,7 @@
 .works-preview__info {
     z-index: $z-slider;
     width: 325px;
+    flex-shrink: 0;
     color: #333C49;
 
     @include tablets {

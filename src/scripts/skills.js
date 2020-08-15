@@ -17,7 +17,7 @@ const skillsItem = {
     mounted() {
         this.drawSkillCircle();
     }
-}
+};
 
 const skillsRow = {
     props: ["category"],
@@ -41,4 +41,4 @@ new Vue({
     created() {
         this.skills = require("../data/skills.json");
     }
-})
+});
