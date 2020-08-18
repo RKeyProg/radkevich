@@ -1,3 +1,9 @@
+.menu__list {
+    @include tablets {
+        flex-wrap: wrap;
+    }
+}
+
 .menu__item {
     margin-right: 60px;
     font-size: 16px;
@@ -10,5 +16,13 @@
 
     &:hover {
         color: $active-color;
+    }
+
+    @include tablets {
+        margin-right: 16.5%;
+    }
+
+    @include phones {
+        margin-right: 28%;
     }
 }

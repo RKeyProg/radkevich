@@ -1,5 +1,6 @@
 .welcome-section {
     position: relative;
+    background: url(~images/content/rect.png) center bottom / cover no-repeat;
 }
 
 .welcome-section__bg {
@@ -10,4 +11,12 @@
     left: 0;
     top: 0;
     z-index: $z-bg;
+
+    @include desktop {
+        height: 70%;
+    }
+
+    @include phones {
+        height: 45%;
+    }
 }

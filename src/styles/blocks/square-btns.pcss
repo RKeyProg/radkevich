@@ -20,6 +20,11 @@
         fill: $text-color_light;
         opacity: .5;
         transition: all .3s ease;
+
+        @include phones {
+            width: 25%;
+            height: 40%;
+        }
     }
 
     &_prev::after {
@@ -28,5 +33,15 @@
 
     &:hover::after {
         opacity: 1;
+    }
+
+    @include desktop {
+        width: 34px;
+        height: 34px;
+    }
+
+    @include phones {
+        width: 55px;
+        height: 55px;
     }
 }

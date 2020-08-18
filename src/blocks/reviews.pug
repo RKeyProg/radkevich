@@ -1,35 +1,3 @@
 section.reviews
     .container
-      .slider
-        .slider__header
-          h2.section-title.section-title_light Что обо мне говорят
-          .slider__buttons
-            button(type="button").slider__btn.round-btn.round-btn_pointer_left
-            button(type="button").slider__btn.round-btn.round-btn_pointer_right
-        ul.slider__content
-          li.slider__item
-            .quote
-              .quote__wrapper
-                .quote__text
-                  p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                .quote__user
-                  .user-display
-                    .avatar.user-display__avatar
-                      .avatar__style
-                        +image('content/user.jpg', 'avatar__img')
-                    .user-display__data
-                      .user-display__name Дмитрий Ковальчук
-                      .user-display__occ Основатель LoftSchool
-          li.slider__item
-            .quote
-              .quote__wrapper
-                .quote__text
-                  p Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-                .quote__user
-                  .user-display
-                    .avatar.user-display__avatar
-                      .avatar__style
-                        +image('content/user.jpg', 'avatar__img')
-                    .user-display__data
-                      .user-display__name Дмитрий Ковальчук
-                      .user-display__occ Основатель LoftSchool
+      #slider-component

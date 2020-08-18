@@ -1,6 +1,20 @@
 .userinfo {
     display: flex;
     padding-left: 21%;
+
+    @include desktop {
+        padding-left: 0;
+        justify-content: center;
+    }
+
+    @include tablets {
+        margin-top: 105px;
+        flex-direction: column;
+    }
+    
+    @include phones {
+        margin-top: 50%;
+    }
 }
 
 .userinfo__title {
@@ -10,6 +24,17 @@
     color: rgba(white, .5);
     margin-right: 56px;
     line-height: 30px;
+
+    @include tablets {
+        text-align: center;
+        margin: 0 0 24px;
+    }
+    
+    @include phones {
+        font-size: 14px;
+        line-height: 19px;
+        margin: 0 0 7px;
+    }
 }
 
 .userinfo__name {
@@ -18,4 +43,14 @@
     line-height: 60px;
     color: $text-color_light;
     flex-basis: 400px;
+
+    @include tablets {
+        flex-basis: auto;
+        text-align: center;
+    }
+    
+    @include phones {
+        font-size: 36px;
+        line-height: 48px;
+    }
 }

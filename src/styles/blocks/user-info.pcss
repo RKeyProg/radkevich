@@ -3,12 +3,33 @@
     flex-direction: column;
     align-items: center;
     width: 347px;
+
+    @include tablets {
+        width: auto;
+    }
+
+    @include between-tab-phon {
+        width: 432px;
+    }
+
+    @include phones {
+        width: 100%;
+    }
 }
 
 .user-info__avatar {
-    width: 200px;
-    height: 200px;
+    width: 200PX;
+    height: 200PX;
     margin-bottom: 65px;
+
+    @include tablets {
+        margin-bottom: 21px;
+    }
+
+    @include phones {
+        width: 170PX;
+        height: 170PX;
+    }
 }
 
 .user-info__data {

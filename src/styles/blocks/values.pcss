@@ -7,19 +7,60 @@
         content: '';
         display: block;
         background: url('~images/content/keyboard.png') 100% / cover no-repeat;
-        width: 58vmin;
-        height: 86vmin;
+        width: 37vw;
+        height: 57vw;
+        max-width: 662px;
+        max-height: 983px;
         position: absolute;
         left: 0;
         bottom: -90px;
+        z-index: $z-before;
+
+        @include desktop {
+            bottom: -70px;
+        }
+
+        @include tablets {
+            transform: rotate(-90deg) translate(-27%, -32%);
+            bottom: 0;
+            left: 50%
+        }
+
+        @include phones {
+            width: 52vw;
+            height: 80vw;
+        }
+    }
+
+    @include tablets {
+        padding: 90px 0 335px;
+        overflow: hidden
+    }
+
+    @include phones {
+        padding: 90px 0 55%;
     }
 }
 
 .values__title {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 600px;
     margin: 0 0 79px 40%;
+
+    @include desktop {
+        margin: 0 auto 79px auto;
+    }
+
+    @include tablets {
+        text-align: center;
+        width: 540px;
+    }
+
+    @include phones {
+        width: 100%;
+        text-align: left;
+    }
 }
 
 .values__title-text {

@@ -7,12 +7,17 @@
   "links-color": "#586ED3",
   "errors-color": "#cd1515",
   "footer-bg": "#222427",
+  "mobile-menu-color": "#414C63",
   "z-slider": "20",
   "z-section": "10",
+  "z-container": "15",
   "z-bg": "5",
+  "z-before": "7",
   "z-slider-btn": "25",
+  "z-mobile-menu": "100",
   "bp-desktop-hd": "1800px",
   "bp-desktop": "1200px",
   "bp-tablets": "768px",
+  "bp-between-tab-phon": "650px",
   "bp-phones": "480px"
 }

@@ -1,0 +1,69 @@
+.mobile-menu {
+    position: fixed;
+    right: -99999px;
+    top: 0;
+    width: 330px;
+    height: 100vh;
+    background-color: $text-color_light;
+    z-index: $z-mobile-menu;
+    padding: 20px 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .3s ease;
+
+    @include phones {
+        width: 100vw;
+    }
+}
+
+.mobile-menu__close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 67px;
+    right: 43px;
+    fill: $mobile-menu-color;
+
+    @include phones {
+        top: 31px;
+        right: 30px;
+    }
+}
+
+.mobile-menu__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    & .socials {
+        margin-right: 0;
+
+        & .socials__item {
+            margin-right: auto;
+        }
+    }
+}
+
+.mobile-nav.menu__list {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 95px;
+}
+
+.mobile-nav.menu__item {
+    margin: 0 0 23px;
+    color: $mobile-menu-color;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+
+    &:hover {
+        color: $active-color;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

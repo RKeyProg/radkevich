@@ -2,23 +2,4 @@ section.works
     .container
       h2.section-title.works__title Мои работы
       .works__content
-        .works__preview
-          .works-preview__pictures(data-slide="2")
-            +image("content/slide4.jpg", "works-preview__img")
-            .works-preview__thumbs
-              ul.thumbs
-                - for (var i = 4; i > 0; i--)
-                  li.thumbs__item
-                    button(type="button").thumbs__link
-                      .thumbs__link-border
-                      +image(`content/slide${i}.jpg`, "works-preview__img")
-            .works-preview__btns
-              .square-btns
-                button(type="button").square-btns__item.square-btns__item_next
-                button(type="button").square-btns__item.square-btns__item_prev
-          .works-preview__info
-            +taglist('tags', ["HTML", "CSS", "Javascript"])
-            .works-preview__title Сайт школы образования
-            .works-preview__desc
-              p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-            a(href="#" target="_blank").iconed-link Посмотреть сайт
+        #preview-component

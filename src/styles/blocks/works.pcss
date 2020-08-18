@@ -1,31 +1,68 @@
-.works .container {
+.works {
     padding: 200px 0;
+
+    @include tablets {
+        padding: 115px 0;
+    }
 }
 
 .works__title {
     margin-bottom: 83px;
+    
+    @include tablets {
+        margin-bottom: 48px;
+    }
 }
 
 .works__preview {
     display: flex;
     justify-content: space-between;
+
+    @include tablets {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .works-preview__pictures {
-    width: 975px;
+    max-width: 975px;
+    height: 100%;
     position: relative;
-    margin-right: 11rem;
+    margin-right: 9vw;
 
     &:before {
         content: attr(data-slide);
         position: absolute;
-        top: 5%;
+        top: 14%;
         right: 0;
         color: #E6E6E6;
         line-height: 1;
-        font-size: 400px;
+        font-size: 22.5vw;
         font-weight: 800;
-        transform: translateX(172px);
+        transform: translateX(9vw);
+
+        @include desktop {
+            top: 15%;
+            font-size: 26vw;
+        }
+
+        @include tablets {
+            font-size: 37vw;
+            transform: translateX(15vw);
+        }
+
+        @include phones {
+            display: none;
+        }
+    }
+
+    @include tablets {
+        margin-bottom: 56px;
+    }
+
+    @include phones {
+        width: 100vw;
+        margin-right: 0;
     }
 }
 
@@ -36,20 +73,50 @@
 
 .works-preview__thumbs {
     position: absolute;
-    bottom: 59px;
+    bottom: 10%;
     right: 0;
+    z-index: $z-slider-btn;
+
+    @include phones {
+        display: none;
+    }
 }
 
 .works-preview__btns {
     position: absolute;
-    bottom: 59px;
+    bottom: 10%;
     right: -53px;
+
+    @include desktop  {
+        right: -34px;
+    }
+
+    @include phones {
+        right: 0;
+        bottom: 0;
+        z-index: $z-slider-btn;
+    }
 }
 
 .works-preview__info {
     z-index: $z-slider;
-    width: 24%;
+    width: 325px;
+    flex-shrink: 0;
     color: #333C49;
+
+    @include tablets {
+        width: 422px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @include phones {
+        width: 100%;
+        text-align: left;
+        align-items: flex-start;
+    }
 }
 
 .works-preview__title {

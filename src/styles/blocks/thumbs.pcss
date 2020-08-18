@@ -1,26 +1,25 @@
+.thumbs {
+    justify-content: flex-end;
+}
+
 .thumbs__item {
     width: 178px;
-    height: 100px;
     position: relative;
+    outline-offset: -3px;
+    outline: 3px solid transparent;
+    transition: all .3s;
+
+    &:hover, &.active {
+        outline-color: #DC9322;
+    }
+
+    @include desktop {
+        width: 24%;
+    }
 }
 
 .thumbs__link {
     width: 100%;
     height: 100%;
     display: block;
-    
-    &:hover .thumbs__link-border{
-        border-color: #DC9322;
-    }
-}
-
-.thumbs__link-border {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    border: 3px solid transparent;
-    z-index: $z-slider-btn;
-    transition: all .3s
 }
