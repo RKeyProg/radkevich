@@ -8,8 +8,31 @@
       <div class="container">
         <div class="header">
           <div class="title">Блок "Обо мне"</div>
-          <iconed-button type="iconed" title="Добавить гурппу" />
+          <iconed-button 
+            type="iconed"
+            v-if="emptyCatIsShown === false"
+            @click="emptyCatIsShown = true" 
+            title="Добавить гурппу" 
+          />
         </div>
+        <ul class="skills">
+          <li class="item" v-if="emptyCatIsShown">
+            <category
+              @remove="emptyCatIsShown = false"
+              empty
+            />
+          </li>
+          <li 
+            class="item" 
+            v-for="category in categories"
+            :key="category.id"
+          >
+            <category
+              :title="category.category"
+              :skills="category.skills"
+            />
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -21,13 +44,24 @@ import headline from "./components/headline";
 import user from "./components/user";
 import navigation from "./components/navigation";
 import button from "./components/button";
+import category from "./components/category";
 
 export default {
   components: {
     headline,
     user,
     navigation,
-    iconedButton: button
+    iconedButton: button,
+    category
+  },
+  data(){
+    return {
+      categories: [],
+      emptyCatIsShown: false
+    }
+  },
+  created() {
+    this.categories = require("./data/categories.json");
   }
 }
 </script>

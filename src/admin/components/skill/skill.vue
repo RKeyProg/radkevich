@@ -15,7 +15,7 @@
       <app-input v-model="currentSkill.percent" type="number" min="0" max="100" maxlength="3" />
     </div>
     <div class="buttons">
-      <icon symbol="tick" class="btn" @clock="$emit('aprove', currentSkill)" />
+      <icon symbol="tick" class="btn" @click="$emit('approve', currentSkill)" />
       <icon symbol="cross" class="btn" @click="editmode = false"/>
     </div>
   </div>
