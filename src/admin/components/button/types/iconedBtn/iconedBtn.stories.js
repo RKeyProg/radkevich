@@ -21,3 +21,15 @@ export const defaultView = () => ({
 defaultView.story = {
   name: "Стандартный вид",
 };
+
+export const bigSize = () => ({
+  components: { iconedBtn },
+  template: `
+    <iconed-btn type="iconed" bigSize @click="onClick" title="Заголовок" />
+  `,
+  methods,
+});
+
+bigSize.story = {
+  name: "Большой размер",
+};

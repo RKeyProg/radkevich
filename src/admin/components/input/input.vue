@@ -11,6 +11,7 @@
       :value="value"
       @input="$emit('input', $event.target.value)"
     />
+    <div class="input-number-percent" v-if="percent">%</div>
     <div class="input__error-tooltip">
       <tooltip :text="errorMessage"></tooltip>
     </div>
@@ -56,6 +57,14 @@ export default {
       type: String,
       default: "",
       validator: value => ["", "user", "key"].includes(value)
+    },
+    percent: {
+      type: Boolean
+    }
+  },
+  data() {
+    return {
+      maxlength: 3
     }
   },
   computed: {

@@ -67,7 +67,8 @@ export const typeView = () => ({
       type="number"
       min="0"
       max="100"
-      maxlength="3" 
+      maxlength="3"
+      percent
     />
   `,
 });

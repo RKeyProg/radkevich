@@ -3,8 +3,8 @@
     :class="['skillAddLine-component', {blocked: blocked}]"
   >
     <app-input class="skillAddLine-title" v-model="title" />
-    <app-input class="skillAddLine-percent" type="number" min="0" max="100" maxlength="3" />
-    <iconed-btn type="iconed" title="" />
+    <app-input class="skillAddLine-percent" percent type="number" min="0" max="100" maxlength="3" />
+    <iconed-btn type="iconed" bigSize title="" />
   </div>
 </template>
 
