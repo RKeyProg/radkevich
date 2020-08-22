@@ -2,7 +2,7 @@
   <label
     class="input"
     v-if="fieldType === 'input'"
-    :class="[{'input_labeled' : !!title, 'no-side-paddings' : noSidePaddings}, iconClass, {'error' : !!errorMessage}]"
+    :class="[{'input_labeled' : !!title, 'no-side-paddings' : noSidePaddings}, iconClass, {'error' : !!validation.firstError('name')}]"
   >
     <div class="title" v-if="title">{{title}}</div>
     <input
@@ -10,32 +10,39 @@
       v-bind="$attrs"
       :value="value"
       @input="$emit('input', checkLength($event))"
+      v-model="name"
     />
     <div class="input-number-percent" v-if="percent">%</div>
     <div class="input__error-tooltip">
-      <tooltip :text="errorMessage"></tooltip>
+      <tooltip :text="validation.firstError('name')"></tooltip>
     </div>
   </label>
   <label
     class="textarea"
     v-else-if="fieldType === 'textarea'"
     v-bind="$attrs"
-    :class="{'error': !!errorMessage}"
+    :class="{'error': !!validation.firstError('name')}"
   >
     <div class="title" v-if="title">{{title}}</div>
     <textarea
       class="textarea__elem field__elem"
       :value="value"
-      :class="{'error' : !!errorMessage}"
+      :class="{'error' : !!validation.firstError('name')}"
       @input="$emit('input', $event.target.value)"
     ></textarea>
     <div class="input__error-tooltip">
-      <tooltip :text="errorMessage"></tooltip>
+      <tooltip :text="validation.firstError('name')"></tooltip>
     </div>
   </label>
 </template>
 
 <script>
+import Vue from 'vue';
+import SimpleVueValidation from 'simple-vue-validator';
+const Validator = SimpleVueValidation.Validator;
+
+Vue.use(SimpleVueValidation);
+
 export default {
   inheritAttrs: false,
   props: {
@@ -64,7 +71,13 @@ export default {
   },
   data() {
     return {
-      maxlength: 3
+      maxlength: 3,
+      name: ''
+    }
+  },
+  validators: {
+    name: function (value) {
+      return Validator.value(value).required().regex('^[A-Za-z]*$', 'Only letters')
     }
   },
   computed: {
@@ -83,7 +96,7 @@ export default {
       const inputValueArray = event.target.value.split(""); 
 
       if (inputValueArray[0] == '0') return event.target.value = '0';
-      if (inputValueArray.length >= 3) return event.target.value = '100';
+      if (inputValueArray.length >= this.maxlength) return event.target.value = '100';
     }
   }
 };

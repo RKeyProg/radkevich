@@ -59,7 +59,6 @@ errorView.story = {
   name: "С ошибкой",
 };
 
-
 export const typeView = () => ({
   components: { appInput },
   template: `
