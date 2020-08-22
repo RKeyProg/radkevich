@@ -9,7 +9,7 @@
       class="input__elem field__elem"
       v-bind="$attrs"
       :value="value"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('input', checkLength($event))"
     />
     <div class="input-number-percent" v-if="percent">%</div>
     <div class="input__error-tooltip">
@@ -75,6 +75,16 @@ export default {
   },
   components: {
     tooltip: () => import("components/tooltip")
+  },
+  methods: {
+    checkLength(event) {
+      if (event.target.type != "number") return event.target.value;
+
+      const inputValueArray = event.target.value.split(""); 
+
+      if (inputValueArray[0] == '0') return event.target.value = '0';
+      if (inputValueArray.length >= 3) return event.target.value = '100';
+    }
   }
 };
 </script>
