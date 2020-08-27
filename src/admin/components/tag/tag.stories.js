@@ -14,9 +14,15 @@ export const defaultView = () => ({
 
 defaultView.story = {
   name: "Стандартный вид",
-  parameters: {
-    backgrounds: [
-      { name: 'grey', value: '#8395a7', default: true },
-    ],
-  },
+};
+
+export const tagWithCross = () => ({
+  components: { tag },
+  template: `
+    <tag title="tag" interactive />
+  `
+});
+
+tagWithCross.story = {
+  name: "С крестиком",
 };

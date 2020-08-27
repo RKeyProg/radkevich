@@ -3,6 +3,7 @@
   font-weight: bold;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0;
   background: transparent;
   outline: none;
@@ -13,15 +14,29 @@
 
   &:before {
     content: "+";
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-image: linear-gradient(to right, #006aed, #3f35cb);
+    background-image: linear-gradient(149.16deg, #0D5EE5 13.11%, #343DD0 84.24%);
     line-height: 20px;
     color: $text-color_light;
     margin-right: 13px;
     flex-shrink: 0;
     flex-basis: 20px;
+  }
+}
+
+.big-size {
+  font-weight: 500;
+
+  &:before {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    margin-right: 0;
+    font-size: 30px;
   }
 }

@@ -94,8 +94,28 @@
   padding: 10px 8%;
   border: none;
   border-bottom: 1px solid #1f232d;
+  -moz-appearance:textfield;
 
   &::placeholder {
     color: rgba(55, 62, 66, 0.25);
   }
+
+  &[type="number"] {
+    min-width: 54px;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.input-number-percent {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
 }
