@@ -2,55 +2,42 @@
   <label
     class="input"
     v-if="fieldType === 'input'"
-    :class="[{'input_labeled' : !!title, 'no-side-paddings' : noSidePaddings}, iconClass, {'error' : !!validation.firstError('name')}]"
+    :class="[{'input_labeled' : !!title, 'no-side-paddings' : noSidePaddings}, iconClass, {'error' : !!errorMessage}]"
   >
     <div class="title" v-if="title">{{title}}</div>
     <input
-      v-if="!percent"
-      class="input__elem field__elem"
-      v-bind="$attrs"
-      :value="value"
-      v-model="name"
-      @input="$emit('input', checkLength($event))"
-    />
-    <input
-      v-if="percent"
       class="input__elem field__elem"
       v-bind="$attrs"
       :value="value"
       @input="$emit('input', checkLength($event))"
+      @keypress="isNumber($event)"
+      @click="clearInput"
     />
     <div class="input-number-percent" v-if="percent">%</div>
     <div class="input__error-tooltip">
-      <tooltip :text="validation.firstError('name')"></tooltip>
+      <tooltip :text="errorMessage"></tooltip>
     </div>
   </label>
   <label
     class="textarea"
     v-else-if="fieldType === 'textarea'"
     v-bind="$attrs"
-    :class="{'error': !!validation.firstError('name')}"
+    :class="{'error': !!errorMessage}"
   >
     <div class="title" v-if="title">{{title}}</div>
     <textarea
       class="textarea__elem field__elem"
       :value="value"
-      :class="{'error' : !!validation.firstError('name')}"
+      :class="{'error' : !!errorMessage}"
       @input="$emit('input', $event.target.value)"
     ></textarea>
     <div class="input__error-tooltip">
-      <tooltip :text="validation.firstError('name')"></tooltip>
+      <tooltip :text="errorMessage"></tooltip>
     </div>
   </label>
 </template>
 
 <script>
-import Vue from 'vue';
-import SimpleVueValidation from 'simple-vue-validator';
-const Validator = SimpleVueValidation.Validator;
-
-Vue.use(SimpleVueValidation);
-
 export default {
   inheritAttrs: false,
   props: {
@@ -79,13 +66,7 @@ export default {
   },
   data() {
     return {
-      maxlength: 3,
-      name: ''
-    }
-  },
-  validators: {
-    name: function (value) {
-      return Validator.value(value).required().regex('^[A-Za-z]*$', 'Only letters')
+      maxlength: 3
     }
   },
   computed: {
@@ -100,20 +81,19 @@ export default {
   methods: {
     checkLength(event) {
       if (event.target.type != "number") return event.target.value;
-      console.log(event);
-
       const inputValueArray = event.target.value.split(""); 
-
-      if ((event.data == 'e') || (event.data == '-') || (event.data == '+')) {
-        let znach = '';
-        for (let i = 0; i < inputValueArray.length-1; i++) {
-          znach+=inputValueArray[i];
-        }
-        return event.target.value = znach;
-      }
-
       if (inputValueArray[0] == '0') return event.target.value = '0';
-      if (inputValueArray.length >= this.maxlength) return event.target.value = '100';
+      if (inputValueArray.length >= 3) return event.target.value = '100';
+    },
+    isNumber(event) {
+      if (event.target.type != "number") return event.target.value;
+      event = (event) ? event : window.event;
+      var charCode = (event.which) ? event.which : event.keyCode;
+      if (charCode >= 48 && charCode <= 57) return true;
+      event.preventDefault();
+    },
+    clearInput(event) {
+      event.target.value = "";
     }
   }
 };

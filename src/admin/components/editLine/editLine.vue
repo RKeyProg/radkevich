@@ -16,6 +16,8 @@
           @keydown.native.enter="onApprove"
           autofocus="autofocus"
           no-side-paddings="no-side-paddings"
+          v-model="inputText"
+          :errorMessage="validation.firstError('inputText')"
         ></app-input>
       </div>
       <div class="buttons">
@@ -31,7 +33,15 @@
 </template>
 
 <script>
+import { Validator } from "simple-vue-validator";
+
 export default {
+  mixins: [require('simple-vue-validator').mixin],
+  validators: {
+    'inputText'(value) {
+      return Validator.value(value).required('Поле не может быть пустым');
+    }
+  },
   props: {
     value: {
       type: String,
@@ -47,16 +57,21 @@ export default {
   data() {
     return {
       editmode: this.editModeByDefault,
-      title: this.value
+      title: this.value,
+      inputText: ""
     };
   },
   methods: {
     onApprove() {
-      if (this.title.trim() === this.value.trim()) {
-        this.editmode = false;
-      } else {
-        this.$emit("approve", this.value);
-      }
+      this.$validate().then(seccess => {
+        if (!seccess) return;
+
+        if (this.title.trim() === this.value.trim()) {
+          this.editmode = false;
+        } else {
+          this.$emit("approve", this.value);
+        }
+      })
     }
   },
   components: {
