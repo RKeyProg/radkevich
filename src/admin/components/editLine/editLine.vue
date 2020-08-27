@@ -39,7 +39,7 @@ export default {
   mixins: [require('simple-vue-validator').mixin],
   validators: {
     'inputText'(value) {
-      return Validator.value(value).required('Поле не может быть пустым');
+      return Validator.value(value).required('Заполните поле');
     }
   },
   props: {

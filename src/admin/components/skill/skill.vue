@@ -9,10 +9,10 @@
   </div>
   <div class="skill-component" v-else>
     <div class="title">
-      <app-input noSidePaddings v-model="currentSkill.title" />
+      <app-input noSidePaddings v-model="currentSkill.title" :errorMessage="validation.firstError('currentSkill.title')"/>
     </div>
     <div class="percent">
-      <app-input v-model="currentSkill.percent" type="number" min="0" max="100" maxlength="3" />
+      <app-input v-model="currentSkill.percent" percent type="number" min="0" max="100" maxlength="3"/>
     </div>
     <div class="buttons">
       <icon symbol="tick" class="btn" @click="$emit('approve', currentSkill)" />
@@ -24,8 +24,15 @@
 <script>
 import input from "../input";
 import icon from "../icon";
+import { Validator } from "simple-vue-validator";
 
 export default {
+  mixins: [require('simple-vue-validator').mixin],
+  validators: {
+    'currentSkill.title'(value) {
+      return Validator.value(value).required('Заполните поле');
+    }
+  },
   props: {
     skill: {
       type: Object,

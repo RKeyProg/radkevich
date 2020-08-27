@@ -11,7 +11,6 @@
       :value="value"
       @input="$emit('input', checkLength($event))"
       @keypress="isNumber($event)"
-      @click="clearInput"
     />
     <div class="input-number-percent" v-if="percent">%</div>
     <div class="input__error-tooltip">
@@ -80,20 +79,17 @@ export default {
   },
   methods: {
     checkLength(event) {
-      if (event.target.type != "number") return event.target.value;
+      if (!this.percent) return event.target.value;
       const inputValueArray = event.target.value.split(""); 
       if (inputValueArray[0] == '0') return event.target.value = '0';
       if (inputValueArray.length >= 3) return event.target.value = '100';
     },
     isNumber(event) {
-      if (event.target.type != "number") return event.target.value;
+      if (!this.percent) return event.target.value;
       event = (event) ? event : window.event;
       var charCode = (event.which) ? event.which : event.keyCode;
       if (charCode >= 48 && charCode <= 57) return true;
       event.preventDefault();
-    },
-    clearInput(event) {
-      event.target.value = "";
     }
   }
 };
