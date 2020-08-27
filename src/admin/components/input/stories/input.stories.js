@@ -63,7 +63,7 @@ export const typeView = () => ({
   components: { appInput },
   template: `
     <app-input
-      type="number"
+      type="text"
       min="0"
       max="100"
       maxlength="3"
