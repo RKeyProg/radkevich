@@ -6,28 +6,22 @@
 </template>
 
 <script>
-import headline from "./components/headline";
-import user from "./components/user";
-import navigation from "./components/navigation";
-import button from "./components/button";
-import category from "./components/category";
+import { mapActions, mapState } from "vuex";
 
 export default {
-  components: {
-    headline,
-    user,
-    navigation,
-    iconedButton: button,
-    category,
+  computed: {
+    ...mapState("categories", {
+      categories: state => state.data
+    })
   },
-  data() {
-    return {
-      categories: [],
-      emptyCatIsShown: false,
-    };
-  },
-  created() {
-    this.categories = require("./data/categories.json");
+  methods: {
+    ...mapActions({
+      createCategoryAction: "categories/create",
+      fetchCategotyAction: "categories/fetch"
+    }),
+    createCategory(categoryTitle) {
+      this.createCategoryAction(categoryTitle);
+    }
   },
 };
 </script>
