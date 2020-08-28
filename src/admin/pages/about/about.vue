@@ -13,7 +13,7 @@
         </div>
         <ul class="skills">
           <li class="item" v-if="emptyCatIsShown">
-            <category @remove="emptyCatIsShown = false" @approve="createCategory" empty />
+            <category z@remove="emptyCatIsShown = false" @approve="createCategory" empty />
           </li>
           <li class="item" v-for="category in categories" :key="category.id">
             <category

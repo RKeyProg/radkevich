@@ -54,7 +54,6 @@ export default {
 			try {
 				const { data } = await this.$axios.get('/categories/370')
 				commit("SET_CATEGORIES", data)
-				console.log(response);
 			} catch (error) {
 				console.log(error);
 			}

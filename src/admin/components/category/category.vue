@@ -51,7 +51,7 @@ export default {
     return {
       categoryTitle: this.title,
     };
-  },
+  }
 };
 </script>
 
