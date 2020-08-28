@@ -13,6 +13,31 @@ export default {
 				}
 				return category;
 			})
+		},
+		REMOVE_SKILL: (state, skillToRemove) => {
+      state.data = state.data.map(category => {
+        if (category.id === skillToRemove.category) {
+          category.skills = category.skills.filter(skill => skill.id !== skillToRemove.id)
+        }
+        return category;
+      })
+		},
+		ESIT_SKILL: (state, skillToEdit) => {
+			const editSkillInCAtegory = category => {
+				category.skills = category.skills.map(skill => {
+					return skill.id === skillToEdit.id ? skillToEdit : skill;
+				});
+			}
+
+			const findCategory = category => {
+				if (category.id === skillToEdit.category){
+					editSkillInCAtegory(category);
+				}
+
+				return category;
+			}
+
+			state.data = state.data.map(findCategory)
 		}
 	},
 	actions: {

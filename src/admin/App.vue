@@ -2,26 +2,34 @@
   <div class="app-container">
     <router-view name="header" />
     <router-view />
+    <div :class="['notify-container', {active: isTooltipShown}]">
+      <div class="notification">
+        <notification 
+          :text="tooltipText" 
+          :type="tooltipType"
+          @click="hideTooltip"
+         />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-
+import notification from "./components/notification";
+import { mapState, mapActions } from "vuex";
 export default {
-  computed: {
-    ...mapState("categories", {
-      categories: state => state.data
-    })
-  },
+  components: { notification },
   methods: {
     ...mapActions({
-      createCategoryAction: "categories/create",
-      fetchCategotyAction: "categories/fetch"
+      hideTooltip: "tooltips/hide"
+    })
+  },
+  computed: {
+    ...mapState("tooltips", {
+      isTooltipShown: (state) => state.isShown,
+      tooltipText: (state) => state.text,
+      tooltipType: (state) => state.type,
     }),
-    createCategory(categoryTitle) {
-      this.createCategoryAction(categoryTitle);
-    }
   },
 };
 </script>

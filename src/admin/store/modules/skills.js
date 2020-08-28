@@ -9,11 +9,23 @@ export default {
 				throw new Error("Ошибка");
 			}
 		},
-		remove() {
-			console.log("remove");
-		},
-		edit() {
-			console.log("edit");
+		async remove({commit}, skillToRemove) {
+      try {
+        const { data } = await this.$axios.delete(`/skills/${skillToRemove.id}`);
+        commit("categories/REMOVE_SKILL", skillToRemove, { root: true })
+      } catch (error) {
+        console.log(error);
+        throw new Error("Ошибка")
+      }
+    },
+		async edit({commit}, skillToEdit) {
+			try {
+        const { data } = await this.$axios.post(`/skills/${skillToEdit.id}`, skillToEdit);
+        commit("categories/ESIT_SKILL", data.skill, { root: true })
+      } catch (error) {
+        console.log(error);
+        throw new Error("Ошибка")
+      }
 		}
 	}
 }

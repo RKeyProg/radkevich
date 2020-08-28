@@ -56,8 +56,8 @@ export default {
       createCategoryAction: "categories/create",
       fetchCategotyAction: "categories/fetch",
       addSkillAction: "skills/add",
-      removeSkillAction: "skill/remove",
-      editSkillAction: "skill/edit",
+      removeSkillAction: "skills/remove",
+      editSkillAction: "skills/edit",
     }),
     async createSkill(skill, categoryId) {
       const newSkill = {
