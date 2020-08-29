@@ -1,7 +1,7 @@
 <template>
   <div class="skill-component" v-if="currentSkill.editmode === false">
     <div class="title">{{skill.title}}</div>
-    <div class="percent">{{skill.percent}}</div>
+    <div class="percent">{{skill.percent}} %</div>
     <div class="buttons">
       <icon symbol="pencil" class="btn" @click="currentSkill.editmode = true" grayscale />
       <icon symbol="trash" class="btn" @click="$emit('remove', currentSkill)" grayscale />

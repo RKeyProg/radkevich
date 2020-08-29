@@ -13,7 +13,10 @@
         </div>
         <ul class="skills">
           <li class="item" v-if="emptyCatIsShown">
-            <category z@remove="emptyCatIsShown = false" @approve="createCategory" empty />
+            <category 
+              @remove-category="emptyCatIsShown = false" @approve="createCategory"
+              empty 
+            />
           </li>
           <li class="item" v-for="category in categories" :key="category.id">
             <category
@@ -22,6 +25,8 @@
               @create-skill="createSkill($event, category.id)"
               @edit-skill="editSkill"
               @remove-skill="removeSkill"
+              @approve="editCategoryTitle($event, category.id)"
+              @remove-category="removeCategory($event, category.id)"
             />
           </li>
         </ul>
@@ -54,35 +59,110 @@ export default {
   methods: {
     ...mapActions({
       createCategoryAction: "categories/create",
+      editCategoryAction: "categories/edit",
       fetchCategotyAction: "categories/fetch",
+      removeCategoryAction: "categories/remove",
       addSkillAction: "skills/add",
       removeSkillAction: "skills/remove",
       editSkillAction: "skills/edit",
+      showTooltip: "tooltips/show",
     }),
     async createSkill(skill, categoryId) {
-      const newSkill = {
-        ...skill,
-        category: categoryId,
-      };
-      await this.addSkillAction(newSkill);
-      skill.title = "";
-      skill.percent = "";
+      try {
+        const newSkill = {
+          ...skill,
+          category: categoryId,
+        };
+        await this.addSkillAction(newSkill);
+        skill.title = "";
+        skill.percent = "";
+        this.showTooltip({
+          text: "Навык успешно добавлен",
+          type: "success"
+        })
+      } catch (error) {
+        this.showTooltip({
+          text: error.message,
+          type: "error"
+        })
+      }
     },
     removeSkill(skill) {
-      this.removeSkillAction(skill);
+      try {
+        this.removeSkillAction(skill);
+        this.showTooltip({
+          text: "Навык успешно удален",
+          type: "success"
+        })
+      } catch (error) {
+        this.showTooltip({
+          text: error.message,
+          type: "error"
+        })
+      }
     },
     async editSkill(skill) {
-      await this.editSkillAction(skill);
-      skill.editmode = false;
+      try {
+        await this.editSkillAction(skill);
+        skill.editmode = false;
+        this.showTooltip({
+          text: "Данные навыки изменены",
+          type: "success"
+        })
+      } catch (error) {
+        this.showTooltip({
+          text: error.message,
+          type: "error"
+        })
+      }
     },
     async createCategory(categoryTitle) {
       try {
         await this.createCategoryAction(categoryTitle);
         this.emptyCatIsShown = false;
+        this.showTooltip({
+          text: "Категория успешно создана",
+          type: "success"
+        })
       } catch (error) {
-        console.log(error.message);
+        this.showTooltip({
+          text: error.message,
+          type: "error"
+        })
       }
     },
+    async editCategoryTitle(categoryTitle, categoryId) {
+      try {
+        const newCategoryTitle = {
+          categoryTitle,
+          categoryId: categoryId,
+        };
+        await this.editCategoryAction(newCategoryTitle);
+        this.showTooltip({
+          text: "Имя категории изменено",
+          type: "success"
+        })
+      } catch (error) {
+        this.showTooltip({
+          text: error.message,
+          type: "error"
+        })
+      }
+    },
+    removeCategory(event, categoryId) {
+      try {
+        this.removeCategoryAction(categoryId);
+        this.showTooltip({
+          text: "Категория успешно удалена",
+          type: "success"
+        })
+      } catch (error) {
+        this.showTooltip({
+          text: error.message,
+          type: "error"
+        })
+      }
+    }
   },
   created() {
     this.fetchCategotyAction();

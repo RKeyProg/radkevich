@@ -4,7 +4,7 @@
       slot="title"
       v-model="categoryTitle"
       :editModeByDefault="empty"
-      @remove="$emit('remove', $event)"
+      @remove="$emit('remove-category', $event)"
       @approve="$emit('approve', $event)"
     />
     <template slot="content">
@@ -18,7 +18,10 @@
         </li>
       </ul>
       <div class="bottom-line">
-        <skill-add-line @approve="$emit('create-skill', $event)" :blocked="empty" />
+        <skill-add-line 
+          @approve="$emit('create-skill', $event)" 
+          :blocked="empty" 
+        />
       </div>
     </template>
   </card>

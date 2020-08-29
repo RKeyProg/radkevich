@@ -25,7 +25,7 @@
           <icon symbol="tick" @click="onApprove"></icon>
         </div>
         <div class="button-icon">
-          <icon symbol="cross" @click="$emit('remove')"></icon>
+          <icon symbol="cross" @click="$emit('remove', $event)"></icon>
         </div>
       </div>
     </div>
@@ -70,6 +70,7 @@ export default {
           this.editmode = false;
         } else {
           this.$emit("approve", this.value);
+          this.editmode = false;
         }
       })
     }
