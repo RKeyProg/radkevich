@@ -74,8 +74,7 @@ export default {
           category: categoryId,
         };
         await this.addSkillAction(newSkill);
-        skill.title = "";
-        skill.percent = "";
+
         this.showTooltip({
           text: "Навык успешно добавлен",
           type: "success"

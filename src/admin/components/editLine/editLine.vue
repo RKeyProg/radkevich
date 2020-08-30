@@ -58,7 +58,7 @@ export default {
     return {
       editmode: this.editModeByDefault,
       title: this.value,
-      inputText: ""
+      inputText: this.value
     };
   },
   methods: {

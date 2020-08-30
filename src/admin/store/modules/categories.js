@@ -5,7 +5,10 @@ export default {
 	},
 	mutations: {
 		SET_CATEGORIES: (state, categories) => (state.data = categories),
-		ADD_CATEGORY: (state, category) => state.data.unshift(category),
+		ADD_CATEGORY: (state, category) => {
+			category.skills = [];
+			state.data.unshift(category);
+		},
 		EDIT_CATEGORY: (state, editCategory) => {
 			const editOldCategory = category => {
 				if (category.id === editCategory.category.id) {
