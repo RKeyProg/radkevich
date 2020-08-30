@@ -25,7 +25,7 @@
           <icon symbol="tick" @click="onApprove"></icon>
         </div>
         <div class="button-icon">
-          <icon symbol="cross" @click="$emit('remove')"></icon>
+          <icon symbol="cross" @click="$emit('remove', $event)"></icon>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@ export default {
   mixins: [require('simple-vue-validator').mixin],
   validators: {
     'inputText'(value) {
-      return Validator.value(value).required('Поле не может быть пустым');
+      return Validator.value(value).required('Заполните поле');
     }
   },
   props: {
@@ -58,7 +58,7 @@ export default {
     return {
       editmode: this.editModeByDefault,
       title: this.value,
-      inputText: ""
+      inputText: this.value
     };
   },
   methods: {
@@ -70,6 +70,7 @@ export default {
           this.editmode = false;
         } else {
           this.$emit("approve", this.value);
+          this.editmode = false;
         }
       })
     }

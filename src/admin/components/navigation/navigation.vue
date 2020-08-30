@@ -1,6 +1,6 @@
 <template>
     <nav class="navigation-component">
-      <div class="containe">
+      <div class="container">
         <ul class="list">
           <li
           v-for="link in links"

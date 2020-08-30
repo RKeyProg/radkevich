@@ -1,38 +1,68 @@
+  z
 <template>
-  <div 
-    :class="['skillAddLine-component', {blocked: blocked}]"
-  >
-    <app-input class="skillAddLine-title" v-model="title" :errorMessage="validation.firstError('title')" />
-    <app-input class="skillAddLine-percent" percent type="number" min="0" max="100" maxlength="3" />
-    <iconed-btn type="iconed" bigSize title="" />
+  <div :class="['skill-add-line-component', {blocked: blocked}]">
+    <div class="title">
+      <app-input
+        :errorMessage="validation.firstError('skill.title')"
+        v-model="skill.title"
+        placeholder="Новый навык"
+      />
+    </div>
+    <div class="percent">
+      <app-input
+        :errorMessage="validation.firstError('skill.percent')"
+        v-model="skill.percent"
+        type="number"
+        min="0"
+        max="100"
+        maxlength="3"
+      />
+    </div>
+    <div class="button">
+      <round-button type="round" @click="handleClick" />
+    </div>
   </div>
 </template>
 
 <script>
-import button from "../button";
 import input from "../input";
-import { Validator } from "simple-vue-validator";
-
+import button from "../button";
+import { Validator, mixin as ValidatorMixin } from "simple-vue-validator";
 export default {
-  mixins: [require('simple-vue-validator').mixin],
+  mixins: [ValidatorMixin],
   validators: {
-    'title'(value) {
-      return Validator.value(value).required('Заполните поле');
-    }
+    "skill.title": (value) => {
+      return Validator.value(value).required("Заполните поле");
+    },
+    "skill.percent": (value) => {
+      return Validator.value(value)
+        .integer("Должно быть числом")
+        .between(0, 100, "Некорректное значение")
+        .required("Заполните поле");
+    },
   },
   props: {
-    blocked: Boolean
+    blocked: Boolean,
   },
   components: {
-    iconedBtn: button,
     appInput: input,
+    roundButton: button,
   },
   data() {
     return {
-      title: "Новый навык"
-    }
-  }
-}
+      skill: {
+        title: "",
+        percent: "",
+      },
+    };
+  },
+  methods: {
+    async handleClick() {
+      if (await this.$validate() === false) return;
+      this.$emit("approve", this.skill);
+    },
+  },
+};
 </script>
 
 <style lang="postcss" scoped src="./skillAddLine.pcss"></style>

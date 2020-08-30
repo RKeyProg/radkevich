@@ -2,7 +2,8 @@
   display: none;
   position: absolute;
   top: 100%;
-  left: 5%;
+  left: 30%;
+  transform: translateX(-50%);
   z-index: 100;
 }
 
@@ -81,7 +82,7 @@
 .textarea__elem {
   height: 150px;
   padding: 20px;
-  border: 1px solid rgba($text-color_light, 0.2);
+  border: 1px solid rgba($text-color_dark, 0.2);
   resize: none;
   font-weight: 600;
   margin-top: 10px;
@@ -93,28 +94,8 @@
   padding: 10px 8%;
   border: none;
   border-bottom: 1px solid #1f232d;
-  -moz-appearance:textfield;
 
   &::placeholder {
     color: rgba(55, 62, 66, 0.25);
   }
-
-  &[type="number"] {
-    min-width: 54px;
-  }
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-.input-number-percent {
-  position: absolute;
-  top: 50%;
-  right: 2px;
-  transform: translateY(-50%);
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 22px;
 }

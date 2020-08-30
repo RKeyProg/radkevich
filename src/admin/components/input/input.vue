@@ -9,11 +9,8 @@
       class="input__elem field__elem"
       v-bind="$attrs"
       :value="value"
-      @input="$emit('input', checkLength($event))"
-      @keypress="isNumber($event)"
-      @click="clearInput"
+      @input="$emit('input', $event.target.value)"
     />
-    <div class="input-number-percent" v-if="percent">%</div>
     <div class="input__error-tooltip">
       <tooltip :text="errorMessage"></tooltip>
     </div>
@@ -59,14 +56,6 @@ export default {
       type: String,
       default: "",
       validator: value => ["", "user", "key"].includes(value)
-    },
-    percent: {
-      type: Boolean
-    }
-  },
-  data() {
-    return {
-      maxlength: 3
     }
   },
   computed: {
@@ -77,24 +66,6 @@ export default {
   },
   components: {
     tooltip: () => import("components/tooltip")
-  },
-  methods: {
-    checkLength(event) {
-      if (event.target.type != "number") return event.target.value;
-      const inputValueArray = event.target.value.split(""); 
-      if (inputValueArray[0] == '0') return event.target.value = '0';
-      if (inputValueArray.length >= 3) return event.target.value = '100';
-    },
-    isNumber(event) {
-      if (event.target.type != "number") return event.target.value;
-      event = (event) ? event : window.event;
-      var charCode = (event.which) ? event.which : event.keyCode;
-      if (charCode >= 48 && charCode <= 57) return true;
-      event.preventDefault();
-    },
-    clearInput(event) {
-      event.target.value = "";
-    }
   }
 };
 </script>

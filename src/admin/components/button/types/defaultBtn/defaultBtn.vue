@@ -1,7 +1,7 @@
 <template>
   <button
     :class="['default-btn-container', 'btn-decorator', {disabled}, {plain}]"
-    v-if="typeAttr === 'button'"
+    v-if="typeAttr === 'button' || typeAttr === 'submit'"
     v-on="$listeners"
     :disabled="disabled"
   >{{title}}</button>
@@ -16,19 +16,19 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Отправить"
+      default: "Отправить",
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     plain: Boolean,
     typeAttr: {
       type: String,
       default: "button",
-      validator: value => ["button", "file"].includes(value)
-    }
-  }
+      validator: (value) => ["button", "file", "submit"].includes(value),
+    },
+  },
 };
 </script>
 
