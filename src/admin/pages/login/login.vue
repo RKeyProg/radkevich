@@ -27,14 +27,12 @@
     </div>
   </div>
 </template>
-
 <script>
 import appInput from "../../components/input";
 import appButton from "../../components/button";
 import { Validator, mixin as ValidatorMixin } from "simple-vue-validator";
 import $axios from "../../requests";
-import { mapActions } from "vuex"
-
+import { mapActions } from "vuex";
 export default {
   mixins: [ValidatorMixin],
   validators: {
@@ -52,21 +50,23 @@ export default {
     },
     isSubmitDisabled: false,
   }),
-  components: { appInput, appButton },
+  components: { appButton, appInput },
   methods: {
     ...mapActions({
-      showTooltip: "tooltips/show"
+      showTooltip: "tooltips/show",
+      login: "user/login"
     }),
     async handleSubmit() {
       if ((await this.$validate()) === false) return;
+      
       this.isSubmitDisabled = true;
-
       try {
         const response = await $axios.post("/login", this.user);
-
         const token = response.data.token;
         localStorage.setItem("token", token);
         $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+        const userResponse = await $axios.get("/user");
+        this.login(userResponse.data.user);
         this.$router.replace("/");
       } catch (error) {
         this.showTooltip({

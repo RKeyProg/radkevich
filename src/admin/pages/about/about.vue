@@ -1,9 +1,9 @@
 <template>
-  <div class="about-page-component">
+  <div class="about-page-component page-component">
     <div class="page-content">
       <div class="container" v-if="categories.length">
-        <div class="header">
-          <div class="title">Блок "Обо мне"</div>
+        <div class="page-header">
+          <div class="page-title">Блок "Обо мне"</div>
           <iconed-button
             type="iconed"
             v-if="emptyCatIsShown === false"
@@ -38,13 +38,13 @@
 
 <script>
 import button from "../../components/button";
-import category from "../../components/category";
+// import category from "../../components/category";
 import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
     iconedButton: button,
-    category,
+    category: () => import('../../components/category'),
   },
   data() {
     return {
