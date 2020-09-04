@@ -67,7 +67,7 @@ export default {
         $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
         const userResponse = await $axios.get("/user");
         this.login(userResponse.data.user);
-        this.$router.replace("/");
+        this.$router.replace("/about");
       } catch (error) {
         this.showTooltip({
           text: error.response.data.error,

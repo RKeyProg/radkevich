@@ -8,6 +8,13 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
+    component: () => import("./pages/login"),
+    meta: {
+      public: true
+    }
+  },
+  {
+    path: "/about",
     components: {
       default: () => import("./pages/about"),
       header: () => import("./components/header")
@@ -21,11 +28,11 @@ const routes = [
     },
   },
   {
-    path: "/login",
-    component: () => import("./pages/login"),
-    meta: {
-      public: true
-    }
+    path: "/reviews",
+    components: {
+      default: () => import("./pages/reviews"),
+      header: () => import("./components/header")
+    },
   },
 ];
 
@@ -49,7 +56,7 @@ router.beforeEach(async (to, from, next) => {
       store.dispatch("user/login", await response.data.user)
       next();
     } catch (error) {
-      router.replace("/login");
+      router.replace("/");
       localStorage.removeItem("token"); 
     }
   } else {

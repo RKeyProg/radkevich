@@ -2,9 +2,9 @@
   <card simple>
     <div class="works-wrapper">
       <div class="pic">
-        <img class="image" :src="cover"/>
+        <img class="image" :src="cover" />
         <div class="tag">
-          <tags-list :tags="work.techs"/>
+          <tags-list :tags="work.techs" />
         </div>
       </div>
       <div class="data">
@@ -15,7 +15,7 @@
         <a :href="work.link" class="link">{{work.link}}</a>
         <div class="btns">
           <icon symbol="pencil" title="Править"></icon>
-          <icon symbol="trash" title="Удалить"></icon>
+          <icon symbol="trash" @click="removeWork" title="Удалить"></icon>
         </div>
       </div>
     </div>
@@ -26,6 +26,8 @@
 import card from "../card";
 import icon from "../icon";
 import tagsList from "../tagsList";
+import { mapActions } from "vuex";
+
 export default {
   components: { card, icon, tagsList },
   props: {
@@ -33,7 +35,15 @@ export default {
   },
   computed: {
     cover() {
-      return `https://webdev-api.loftschool.com/${this.work.photo}`
+      return `https://webdev-api.loftschool.com/${this.work.photo}`;
+    },
+  },
+  methods: {
+    ...mapActions({
+      removeWrokAction: "works/remove",
+    }),
+    async removeWork() {
+      await this.removeWrokAction(this.work.id);
     }
   },
 };

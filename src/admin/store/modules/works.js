@@ -13,6 +13,9 @@ export default {
     },
     SET_WORKS(state, works) {
       state.data = works
+    },
+    REMOVE_WORK: (state, workId) => {
+      state.data = state.data.filter(work => work.id !== workId)
     }
   },
   actions: {
@@ -30,11 +33,18 @@ export default {
         console.log("error");
       }
     },
-
     async fetch({commit, getters}) {
       try {
         const { data } = await this.$axios.get(`/works/${getters.getUserId}`);
         commit("SET_WORKS", data);
+      } catch (error) {
+        console.log("error");
+      }
+    }, 
+    async remove({commit}, workId) {
+      try {
+        const { data } = await this.$axios.delete(`/works/${workId}`);
+        commit("REMOVE_WORK", workId)
       } catch (error) {
         console.log("error");
       }

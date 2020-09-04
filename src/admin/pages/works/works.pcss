@@ -2,11 +2,44 @@
   display: flex;
   flex-wrap: wrap;
   margin-left: -20px;
+  align-items: stretch;
 }
 
 .item {
-  width: calc(100% / 3 - 20px);
-  margin-left: 20px;
+  width: calc(100% / 3 - 28px);
+  min-height: 560px;
+  margin: 0 0 28px 28px;
+}
+
+.create-item {
+  background: linear-gradient(149.16deg, #0D5EE5 13.11%, #343DD0 84.24%);
+}
+
+.create-item-btn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $text-color_light;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+
+  &:before {
+    content: "+";
+    font-size: 75px;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid $text-color_light;
+    margin-bottom: 23px;
+  }
 }
 
 .form {

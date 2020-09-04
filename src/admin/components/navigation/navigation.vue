@@ -17,9 +17,9 @@
 
 <script>
 const links = [
-  {id: 0, title: "Обо мне", alias: "", active: false},
-  {id: 1, title: "Работы", alias: "works", active: true},
-  {id: 2, title: "Отзывы", alias: "reviews", active: false},
+  {id: 0, title: "Обо мне", alias: "about"},
+  {id: 1, title: "Работы", alias: "works"},
+  {id: 2, title: "Отзывы", alias: "reviews"},
 ];
 export default {
   data() {
