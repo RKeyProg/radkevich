@@ -4,7 +4,7 @@
       <ul class="list">
         <li
           v-for="link in links" 
-          class="item"
+          :class="['item', {active: $route.path === `/${link.alias}`}]"
           :key="link.id">
           <router-link active-class="active" exact :to="`/${link.alias}`" class="link">
             {{link.title}}
