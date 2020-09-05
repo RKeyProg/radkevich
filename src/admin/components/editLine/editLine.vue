@@ -51,8 +51,14 @@ export default {
       type: String,
       default: ""
     },
-    editModeByDefault: Boolean,
-    blocked: Boolean
+    editModeByDefault: {
+      type: Boolean,
+      default: false,
+    },
+    blocked: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {

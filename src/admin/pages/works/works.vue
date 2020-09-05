@@ -7,18 +7,19 @@
             Блок "Работы"
           </div>
         </div>
-        <div class="form" v-if="createMode">
-          <app-form />
+        <div class="form" v-if="formVisible || Object.keys(this.currentWork).length !== 0">
+          <app-form @hide-form="hideForm" :edit-work-data="currentWork" />
         </div>
         <ul class="cards">
           <li class="item create-item">
-            <button class="create-item-btn" @click="createMode = true">
+            <button class="create-item-btn" @click="showForm" >
               <span>Добавить работу</span>
             </button>
           </li>
           <li class="item" v-for="work in works" :key="work.id">
             <work-card
               :work="work"
+              @edit-work="editWork(work)"
             />
           </li>
         </ul>
@@ -36,7 +37,8 @@ export default {
   components: { appForm, workCard },
   data() {
     return {
-      createMode: false,
+      formVisible: false,
+      currentWork: {},
     }
   },
   computed: {
@@ -48,6 +50,16 @@ export default {
     ...mapActions({
       fetchWorks: "works/fetch"
     }),
+    showForm() {
+      this.formVisible = !this.formVisible;
+    },
+    hideForm() {
+      this.formVisible = false;
+      this.currentWork = {};
+    },
+    editWork(work) {
+      this.currentWork = work;
+    }
   },
   mounted() {
     this.fetchWorks();

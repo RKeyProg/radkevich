@@ -46,12 +46,18 @@ export default {
       type: String,
       default: ""
     },
-    noSidePaddings: Boolean,
+    noSidePaddings: {
+      type: Boolean,
+      default: false,
+    },
     fieldType: {
       type: String,
       default: "input"
     },
-    value: String | Number,
+    value: {
+      type: String | Number,
+      default: "",
+    },
     icon: {
       type: String,
       default: "",

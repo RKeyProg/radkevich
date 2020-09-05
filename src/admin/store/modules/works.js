@@ -16,6 +16,9 @@ export default {
     },
     REMOVE_WORK: (state, workId) => {
       state.data = state.data.filter(work => work.id !== workId)
+    },
+    EDIT_WORK: (state, editWork) => {
+      state.data = state.data.filter(work => work.id === editWork.id ? editWork : work)
     }
   },
   actions: {
@@ -45,6 +48,20 @@ export default {
       try {
         const { data } = await this.$axios.delete(`/works/${workId}`);
         commit("REMOVE_WORK", workId)
+      } catch (error) {
+        console.log("error");
+      }
+    }, 
+    async edit({commit}, editWork) {
+      const formData = new FormData();
+      
+      Object.keys(editWork).forEach(item => {
+        formData.append(item, editWork[item]);
+      })
+
+      try {
+        const { data } = await this.$axios.post(`/works/${editWork.id}`, formData);
+        commit("EDIT_WORK", data);
       } catch (error) {
         console.log("error");
       }
