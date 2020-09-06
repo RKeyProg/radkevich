@@ -1,4 +1,5 @@
 import Vue from "vue";
+import axios from "axios";
 
 const thumbs = {
     props: ["currentWork", "works"],
@@ -32,7 +33,7 @@ const info = {
     components: {tags},
     computed: {
         tagsArray() {
-            return this.currentWork.skills.split(",");
+            return this.currentWork.techs.split(",");
         }
     }
 };
@@ -65,7 +66,7 @@ new Vue({
         },
         requireImagesToArray(data) {
             return data.map(item => {
-                const requiredImage = require(`../images/content/${item.photo}`).default;
+                const requiredImage = `https://webdev-api.loftschool.com/${item.photo}`
                 item.photo = requiredImage;
                 return item;
             });
@@ -86,8 +87,8 @@ new Vue({
             }
         }
     },
-    created() {
-        const data = require("../data/works.json");
-        this.works = this.requireImagesToArray(data);
+    async created() {
+        const data = await axios.get('/works/370');
+        this.works = this.requireImagesToArray(data.data);
     }
 });

@@ -1,7 +1,7 @@
 <template>
   <div class="header-component">
     <headline title="Панель администрирования">
-      <user />
+      <user name="Кирилл Радкевич"/>
     </headline>
     <navigation />
   </div>

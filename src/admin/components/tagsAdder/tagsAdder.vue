@@ -6,10 +6,9 @@
       @input="$emit('change', currentTags)"
     />
     <ul class="tags">
-      <li class="tag"
+      <li class="tags-item"
         v-for="(tag, index) in tagsArray"
         :key="`$(tag)${index}`"
-        v-if="tag.trim()"
       >
         <tag
           interactive 
@@ -42,12 +41,12 @@ export default {
   },
   data() {
     return {
-      currentTags: this.tags
+      currentTags: this.tags,
     }
   },
   computed: {
     tagsArray() {
-      return this.currentTags.trim().split(',');
+      return this.currentTags.trim().split(',').filter(item => ((item !== "") && (item !== " ")));
     }
   },
   methods: {
@@ -61,6 +60,11 @@ export default {
       this.currentTags = tags.join(', ');
 
       this.$emit("change", this.currentTags);
+    }
+  },
+  watch: {
+    tags: function() {
+      this.currentTags = this.tags;
     }
   }
 }

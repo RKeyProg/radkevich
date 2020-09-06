@@ -1,0 +1,32 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -20px;
+  align-items: stretch;
+}
+
+.item {
+  width: calc(100% / 3 - 28px);
+  min-height: 560px;
+  margin: 0 0 28px 28px;
+}
+
+.edit-work {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .6);
+    z-index: $z-before;
+  }
+}
+
+.form {
+  margin-bottom: 30px;
+}

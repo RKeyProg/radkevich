@@ -1,9 +1,13 @@
 export default {
 	namespaced: true,
 	state: {
-		data: []
+		data: [],
+		user: {}
 	},
 	mutations: {
+		SET_USER: (state, user) => {
+			state.user = user;
+		},
 		SET_CATEGORIES: (state, categories) => (state.data = categories),
 		ADD_CATEGORY: (state, category) => {
 			category.skills = [];
@@ -66,9 +70,9 @@ export default {
 				throw new Error("Произошла ошибка");
 			}
 		},
-		async fetch({commit}) {
+		async fetch({commit, rootState}) {
 			try {
-				const { data } = await this.$axios.get('/categories/370')
+				const { data } = await this.$axios.get(`/categories/${rootState.user.user.id}`)
 				commit("SET_CATEGORIES", data)
 			} catch (error) {
 				console.log(error);
@@ -94,5 +98,5 @@ export default {
         throw new Error("Ошибка")
       }
 		}
-	}
+	},
 }
