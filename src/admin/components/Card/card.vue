@@ -24,10 +24,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    slim: {
-      type: Boolean,
-      default: false,
-    },
+    slim: Boolean,
   },
 };
 </script>

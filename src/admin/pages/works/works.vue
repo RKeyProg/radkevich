@@ -12,11 +12,13 @@
         </div>
         <ul class="cards">
           <li class="item create-item">
-            <button class="create-item-btn" @click="showForm" >
-              <span>Добавить работу</span>
-            </button>
+            <square-btn 
+              type="square"
+              title="Добавить работу" 
+              @click="showForm" 
+            />
           </li>
-          <li class="item" v-for="work in works" :key="work.id">
+          <li :class="['item', {'edit-work': isCurrentWork(work)}]" v-for="work in works" :key="work.id">
             <work-card
               :work="work"
               @edit-work="editWork(work)"
@@ -30,11 +32,12 @@
 </template>
 
 <script>
-import appForm from "../../components/form";
+import appForm from "../../components/worksForm";
+import squareBtn from "../../components/button";
 import workCard from "../../components/workCard";
 import { mapState, mapActions } from "vuex";
 export default {
-  components: { appForm, workCard },
+  components: { appForm, workCard, squareBtn },
   data() {
     return {
       formVisible: false,
@@ -44,7 +47,7 @@ export default {
   computed: {
     ...mapState("works", {
       works: (state) => state.data,
-    }),
+    })
   },
   methods: {
     ...mapActions({
@@ -59,7 +62,10 @@ export default {
     },
     editWork(work) {
       this.currentWork = work;
-    }
+    },
+    isCurrentWork(work) {
+      return work.id === this.currentWork.id;
+    },
   },
   mounted() {
     this.fetchWorks();

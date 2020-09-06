@@ -1,0 +1,46 @@
+<template>
+  <card>
+    <div slot="title" class="author">
+      <user :size="3" :name="review.author" :occ="review.occ" />
+    </div>
+    <div slot="content" class="data">
+      <div class="text">
+        <p>{{review.text}}</p>
+      </div>
+      <div class="btns">
+        <icon symbol="pencil" @click="$emit('edit-review')" title="Править"></icon>
+        <icon symbol="trash" @click="removeReview" title="Удалить"></icon>
+      </div>
+    </div>
+  </card>
+</template>
+
+<script>
+import user from "../../components/user";
+import card from "../card";
+import icon from "../icon";
+import tagsList from "../tagsList";
+import { mapActions } from "vuex";
+
+export default {
+  components: { card, icon, tagsList, user },
+  props: {
+    review: Object,
+  },
+  computed: {
+    cover() {
+      return `https://webdev-api.loftschool.com/${this.review.photo}`;
+    },
+  },
+  methods: {
+    ...mapActions({
+      removeReviewAction: "reviews/remove",
+    }),
+    async removeReview() {
+      await this.removeReviewAction(this.review.id);
+    }
+  },
+};
+</script>
+
+<style scoped lang="postcss" src="./reviewCard.pcss"></style>

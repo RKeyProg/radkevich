@@ -30,7 +30,6 @@
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap-reverse;
-    margin-right: -10px;
   }
 
   li {

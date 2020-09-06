@@ -11,34 +11,19 @@
   margin: 0 0 28px 28px;
 }
 
-.create-item {
-  background: linear-gradient(149.16deg, #0D5EE5 13.11%, #343DD0 84.24%);
-}
+.edit-work {
+  position: relative;
 
-.create-item-btn {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: $text-color_light;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 25px;
-
-  &:before {
-    content: "+";
-    font-size: 75px;
-    font-weight: 300;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 2px solid $text-color_light;
-    margin-bottom: 23px;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .6);
+    z-index: $z-before;
   }
 }
 

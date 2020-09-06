@@ -6,7 +6,7 @@
       @input="$emit('change', currentTags)"
     />
     <ul class="tags">
-      <li class="tag"
+      <li class="tags-item"
         v-for="(tag, index) in tagsArray"
         :key="`$(tag)${index}`"
         v-if="tag.trim()"

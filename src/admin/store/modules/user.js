@@ -23,7 +23,8 @@ export default {
     login({ commit }, user) {
 			commit("SET_USER", user);
 			commit("categories/SET_USER", user, { root: true });
-			commit("works/SET_USER", user, { root: true });
+      commit("works/SET_USER", user, { root: true });
+      commit("reviews/SET_USER", user, { root: true });
     }
   }
 };
