@@ -7,7 +7,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/login",
     component: () => import("./pages/login"),
     meta: {
       public: true
@@ -56,7 +56,7 @@ router.beforeEach(async (to, from, next) => {
       store.dispatch("user/login", await response.data.user)
       next();
     } catch (error) {
-      router.replace("/");
+      router.replace("/login");
       localStorage.removeItem("token"); 
     }
   } else {

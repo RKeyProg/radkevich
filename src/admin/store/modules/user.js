@@ -10,7 +10,7 @@ export default {
   getters: {
     userIsLoggedIn: state => {
       const userObj = state.user;
-      const userObjIsEmpty = Object.keys(userObj).length === 0 && userObj.constructor === Object
+      const userObjIsEmpty = Object.keys(userObj).length === 0 && userObj.constructor === Object;
 
       return userObjIsEmpty === false;
     }
@@ -21,10 +21,7 @@ export default {
       location.reload();
     },
     login({ commit }, user) {
-			commit("SET_USER", user);
-			commit("categories/SET_USER", user, { root: true });
-      commit("works/SET_USER", user, { root: true });
-      commit("reviews/SET_USER", user, { root: true });
+      commit("SET_USER", user);
     }
   }
 };

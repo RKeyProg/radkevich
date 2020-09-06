@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="form" v-if="formVisible || Object.keys(this.currentWork).length !== 0">
-          <app-form @hide-form="hideForm" :edit-work-data="currentWork" />
+          <app-form @hide-form="hideForm" :form-name="formName" :edit-work-data="currentWork" />
         </div>
         <ul class="cards">
           <li class="item create-item">
@@ -42,6 +42,7 @@ export default {
     return {
       formVisible: false,
       currentWork: {},
+      formName: "Добавление работы",
     }
   },
   computed: {
@@ -59,9 +60,11 @@ export default {
     hideForm() {
       this.formVisible = false;
       this.currentWork = {};
+      this.formName = "Добавление работы";
     },
     editWork(work) {
       this.currentWork = work;
+      this.formName = "Редактирование работы";
     },
     isCurrentWork(work) {
       return work.id === this.currentWork.id;

@@ -18,7 +18,9 @@ export default {
       state.data = state.data.filter(review => review.id !== reviewId)
     },
     EDIT_REVIEW: (state, editReview) => {
-      state.data = state.data.filter(work => work.id === editReview.id ? editReview : work)
+      state.data = state.data.map(review => {
+        return review.id === editReview.review.id ? editReview.review : review
+      })
     }
   },
   actions: {
@@ -36,9 +38,9 @@ export default {
         console.log("error");
       }
     },
-    async fetch({commit, getters}) {
+    async fetch({commit, rootState}) {
       try {
-        const { data } = await this.$axios.get(`/reviews/${getters.getUserId}`);
+        const { data } = await this.$axios.get(`/reviews/${rootState.user.user.id}`);
         commit("SET_REVIEW", data);
       } catch (error) {
         console.log("error");
@@ -67,9 +69,4 @@ export default {
       }
     }
   },
-	getters: {
-		getUserId: state => {
-			return state.user.id;
-		}
-	}
 };

@@ -1,7 +1,7 @@
 <template>
   <card>
     <div slot="title" class="author">
-      <user :size="3" :name="review.author" :occ="review.occ" />
+      <user :size="3" :photo="review.photo" :name="review.author" :occ="review.occ" />
     </div>
     <div slot="content" class="data">
       <div class="text">

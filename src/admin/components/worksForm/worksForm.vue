@@ -1,13 +1,13 @@
 <template>
   <div class="form-component">
     <form class="form" @submit.prevent="handleSubmit">
-      <card title="Добавление работы" v-if="Object.keys(this.editWorkData).length === 0">
+      <card :title='formName'>
         <div class="form-container" slot="content">
           <div class="form-cols">
             <div class="form-col">
               <label
-                :style="{backgroundImage: `url(${newWork.preview})`}"
-                :class="[ 'uploader', {active: newWork.preview}, {
+                :style="{backgroundImage: `url(${preview})`}"
+                :class="[ 'uploader', {active: preview}, {
                   hovered: hovered
                 }]"
                 @dragover="handleDragOver"
@@ -45,54 +45,6 @@
           </div>
         </div>
       </card>
-      <card title="Редактирование работы" v-else>
-        <div class="form-container" slot="content">
-          <div class="form-cols">
-            <div class="form-col">
-              <label
-                :style="{backgroundImage: `url(${newWork.preview})`}"
-                :class="[ 'uploader', {active: newWork.preview}, {
-                  hovered: hovered
-                }]"
-                @dragover="handleDragOver"
-                @dragleave="hovered = false"
-                @drop="handleChange"
-              >
-                <div class="uploader-title">Перетащите или загрузите картинку</div>
-                <div class="uploader-btn">
-                  <app-button typeAttr="file" @change="handleChange"></app-button>
-                </div>
-              </label>
-            </div>
-            <div class="form-col">
-              <div class="form-row">
-                <app-input v-model="editWorkData.title" title="Название" />
-              </div>
-              <div class="form-row">
-                <app-input v-model="editWorkData.link" title="Ссылка" />
-              </div>
-              <div class="form-row">
-                <app-input
-                  v-model="editWorkData.description"
-                  field-type="textarea"
-                  title="Описание"
-                />
-              </div>
-              <div class="form-row">
-                <tags-adder v-model="editWorkData.techs" />
-              </div>
-            </div>
-          </div>
-          <div class="form-btns">
-            <div class="btn">
-              <app-button title="Отмена" @click.prevent="$emit('hide-form')" plain></app-button>
-            </div>
-            <div class="btn">
-              <app-button title="Сохранить" typeAttr="submit"></app-button>
-            </div>
-          </div>
-        </div>
-      </card>
     </form>
   </div>
 </template>
@@ -106,20 +58,36 @@ import { mapActions } from "vuex";
 export default {
   components: { card, appButton, appInput, tagsAdder },
   props: {
-    editWorkData: Object
+    editWorkData: Object,
+    formName: String,
   },
   data() {
     return {
       hovered: false,
+      preview: "",
       newWork: {
         title: "",
         link: "",
         description: "",
         techs: "",
         photo: {},
-        preview: "",
       },
     };
+  },
+  watch: {
+    editWorkData() {
+      this.newWork = {...this.editWorkData};
+      if (Object.keys(this.newWork).length !== 0) {
+        this.preview = `https://webdev-api.loftschool.com/${this.newWork.photo}`;
+      }
+    }
+  },
+  created() {
+    this.newWork = {...this.editWorkData};
+
+    if (Object.keys(this.newWork).length !== 0) {
+      this.preview = `https://webdev-api.loftschool.com/${this.newWork.photo}`;
+    }
   },
   methods: {
     ...mapActions({
@@ -147,7 +115,7 @@ export default {
         }
       } else {
         try {
-          await this.editWork(this.editWorkData);
+          await this.editWork(this.newWork);
           this.showTooltip({
             text: "Работа успешно изменена",
             type: "success"
@@ -161,29 +129,19 @@ export default {
       }
     },
     handleChange(event) {
-      if (Object.keys(this.editWorkData).length === 0) {
-        event.preventDefault();
-        const file = event.dataTransfer 
-          ? event.dataTransfer.files[0] 
-          : event.target.files[0];
-        this.newWork.photo = file;
-        this.renderPhoto(file);
-        this.hovered = false;
-      } else {
-        event.preventDefault();
-        const file = event.dataTransfer 
-          ? event.dataTransfer.files[0] 
-          : event.target.files[0];
-        this.editWorkData.photo = file;
-        this.renderPhoto(file);
-        this.hovered = false;
-      }
+      event.preventDefault();
+      const file = event.dataTransfer 
+        ? event.dataTransfer.files[0] 
+        : event.target.files[0];
+      this.newWork.photo = file;
+      this.renderPhoto(file);
+      this.hovered = false;
     },
     renderPhoto(file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        this.newWork.preview = reader.result;
+        this.preview = reader.result;
       };
     },
   },

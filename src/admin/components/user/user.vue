@@ -19,12 +19,15 @@ export default {
         },
         occ: String,
         name: String,
+        photo: String,
     },
     components: {
         avatar
     },
     computed: {
         userPic() {
+            if (this.photo) return `https://webdev-api.loftschool.com/${this.photo}`;
+
             return require("../../../images/content/user.jpg").default;
         }
     }

@@ -70,9 +70,9 @@ export default {
 				throw new Error("Произошла ошибка");
 			}
 		},
-		async fetch({commit, getters}) {
+		async fetch({commit, rootState}) {
 			try {
-				const { data } = await this.$axios.get(`/categories/${getters.getUserId}`)
+				const { data } = await this.$axios.get(`/categories/${rootState.user.user.id}`)
 				commit("SET_CATEGORIES", data)
 			} catch (error) {
 				console.log(error);
@@ -99,9 +99,4 @@ export default {
       }
 		}
 	},
-	getters: {
-		getUserId: state => {
-			return state.user.id;
-		}
-	}
 }

@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="form" v-if="formVisible || Object.keys(this.currentReview).length !== 0">
-          <app-form @hide-form="hideForm" :edit-review-data="currentReview" />
+          <app-form @hide-form="hideForm" :form-name="formName" :edit-review-data="currentReview" />
         </div>
         <ul class="cards">
           <li class="item">
@@ -46,6 +46,7 @@ export default {
     return {
       formVisible: false,
       currentReview: {},
+      formName: "Новый отзыв",
     }
   },
 	computed: {
@@ -63,9 +64,11 @@ export default {
     hideForm() {
       this.formVisible = false;
       this.currentReview = {};
+      this.formName = "Новый отзыв";
     },
     editReview(review) {
       this.currentReview = review;
+      this.formName = "Редактирование отзыва";
     },
     isCurrentReview(review) {
       return review.id === this.currentReview.id;

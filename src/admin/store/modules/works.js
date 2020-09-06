@@ -18,7 +18,9 @@ export default {
       state.data = state.data.filter(work => work.id !== workId)
     },
     EDIT_WORK: (state, editWork) => {
-      state.data = state.data.filter(work => work.id === editWork.id ? editWork : work)
+      state.data = state.data.map(work => {
+        return work.id === editWork.work.id ? editWork.work : work
+      })
     }
   },
   actions: {
@@ -36,9 +38,9 @@ export default {
         console.log("error");
       }
     },
-    async fetch({commit, getters}) {
+    async fetch({commit, rootState}) {
       try {
-        const { data } = await this.$axios.get(`/works/${getters.getUserId}`);
+        const { data } = await this.$axios.get(`/works/${rootState.user.user.id}`);
         commit("SET_WORKS", data);
       } catch (error) {
         console.log("error");
@@ -67,9 +69,4 @@ export default {
       }
     }
   },
-	getters: {
-		getUserId: state => {
-			return state.user.id;
-		}
-	}
 };
