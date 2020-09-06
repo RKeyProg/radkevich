@@ -35,9 +35,21 @@ export default {
   methods: {
     ...mapActions({
       removeReviewAction: "reviews/remove",
+      showTooltip: "tooltips/show",
     }),
     async removeReview() {
-      await this.removeReviewAction(this.review.id);
+      try {
+        await this.removeReviewAction(this.review.id);
+        this.showTooltip({
+          text: "Отзыв успешно удален",
+          type: "success"
+        })
+      } catch (error) {
+        this.showTooltip({
+          text: error.message,
+          type: "error"
+        })
+      }
     }
   },
 };

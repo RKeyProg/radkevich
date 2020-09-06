@@ -37,7 +37,11 @@ import reviewCard from "../../components/reviewCard";
 import { mapState, mapActions } from "vuex";
 
 export default {
-  components: { appForm, reviewCard, squareBtn },
+  components: { 
+    appForm, 
+    reviewCard, 
+    squareBtn,
+  },
   data() {
     return {
       formVisible: false,
@@ -51,7 +55,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetchReviews: "reviews/fetch"
+      fetchReviews: "reviews/fetch",
     }),
     showForm() {
       this.formVisible = !this.formVisible;

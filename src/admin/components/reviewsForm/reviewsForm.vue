@@ -110,12 +110,35 @@ export default {
     ...mapActions({
       addNewReview: "reviews/add",
       editReview: "reviews/edit",
+      showTooltip: "tooltips/show",
     }),
     async handleSubmit() {
       if (Object.keys(this.editReviewData).length === 0) {
-        await this.addNewReview(this.newReview);
+        try {
+          await this.addNewReview(this.newReview);
+          this.showTooltip({
+            text: "Отзыв успешно добавлен",
+            type: "success"
+          })
+        } catch (error) {
+          this.showTooltip({
+            text: error.message,
+            type: "error"
+          })
+        }
       } else {
-        await this.editReview(this.editReviewData);
+        try {
+          await this.editReview(this.editReviewData);
+          this.showTooltip({
+            text: "Отзыв успешно изменен",
+            type: "success"
+          })
+        } catch (error) {
+          this.showTooltip({
+            text: error.message,
+            type: "error"
+          })
+        }
       }
     },
     handleDragOver(e) {

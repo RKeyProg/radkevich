@@ -125,6 +125,7 @@ export default {
     ...mapActions({
       addNewWork: "works/add",
       editWork: "works/edit",
+      showTooltip: "tooltips/show",
     }),
     handleDragOver(e) {
       e.preventDefault();
@@ -132,9 +133,31 @@ export default {
     },
     async handleSubmit() {
       if (Object.keys(this.editWorkData).length === 0) {
-        await this.addNewWork(this.newWork);
+        try {
+          await this.addNewWork(this.newWork);
+          this.showTooltip({
+            text: "Работа успешно добавлена",
+            type: "success"
+          })
+        } catch (error) {
+          this.showTooltip({
+            text: error.message,
+            type: "error"
+          })
+        }
       } else {
-        await this.editWork(this.editWorkData);
+        try {
+          await this.editWork(this.editWorkData);
+          this.showTooltip({
+            text: "Работа успешно изменена",
+            type: "success"
+          })
+        } catch (error) {
+          this.showTooltip({
+            text: error.message,
+            type: "error"
+          })
+        }
       }
     },
     handleChange(event) {
