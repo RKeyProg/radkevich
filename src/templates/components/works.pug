@@ -12,16 +12,18 @@ script(type="text/x-template")#preview-container
 
 script(type="text/x-template")#preview-display
     .works-preview__pictures(:data-slide="currentIndex + 1")
-        img(:src="currentWork.photo").works-preview__img
-        .works-preview__thumbs
-            thumbs(
-                :works="selectingWorks",
-                :currentWork="currentWork"
-            )
-        .works-preview__btns
-            btns(
-                @slide="direction => $emit('slide', direction)"
-            )
+        .works-preview__pictures-content
+            transition-group(name="fade" tag="div" mode="out-in").works-preview__fullpic-container
+                img(:src="currentWork.photo" :key="currentWork.id").works-preview__img
+            .works-preview__thumbs
+                thumbs(
+                    :works="selectingWorks",
+                    :currentWork="currentWork"
+                )
+            .works-preview__btns
+                btns(
+                    @slide="direction => $emit('slide', direction)"
+                )
 
 script(type="text/x-template")#preview-thumbs
     ul.thumbs
@@ -58,18 +60,3 @@ script(type="text/x-template")#preview-tags
     ul.tags(v-if="tags.length")
         li.tags__item(v-for="tag in tags")
             .tag {{tag}}
-
-
-
-//- script(type="text/x-template")#preview-display
-//-     .works-preview__pictures(:data-slide="currentIndex + 1")
-            img(:src="currentWork.photo").works-preview__img
-//-         .works-preview__thumbs
-//-             thumbs(
-//-                 :works="selectingWorks",
-//-                 :currentWork="currentWork"
-//-             )
-//-         .works-preview__btns
-//-             btns(
-//-                 @slide="$emit('slide', $event)"
-//-             )

@@ -7,9 +7,11 @@
             Блок "Отзывы"
           </div>
         </div>
-        <div class="form" v-if="formVisible || Object.keys(this.currentReview).length !== 0">
-          <app-form @hide-form="hideForm" :form-name="formName" :edit-review-data="currentReview" />
-        </div>
+        <transition name="form" >
+          <div class="form" v-if="formVisible || Object.keys(this.currentReview).length !== 0">
+            <app-form @hide-form="hideForm" :form-name="formName" :edit-review-data="currentReview" />
+          </div>
+        </transition>
         <ul class="cards">
           <li class="item">
             <square-btn 

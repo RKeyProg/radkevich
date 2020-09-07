@@ -13,7 +13,7 @@
                   @dragleave="hovered = false"
                   @drop="handleChange"
                 >
-                  <div class="uploader-user-icon" v-if="Object.keys(newReview).length === 0"></div>
+                  <div class="uploader-user-icon" v-if="preview === ''"></div>
                 </div>
                 <div class="uploader-btn">
                   <app-button plain title="Добавить фото" typeAttr="file" @change="handleChange"></app-button>

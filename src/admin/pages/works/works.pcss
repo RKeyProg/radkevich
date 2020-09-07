@@ -30,3 +30,17 @@
 .form {
   margin-bottom: 30px;
 }
+
+.form-enter-active, .form-leave-active {
+  transition: max-height .5s ease-out;
+  overflow: hidden;
+  box-shadow: 0.25625rem 0.18125rem 1.25rem 0 rgba(0,0,0,.07);
+}
+
+.form-enter, .form-leave-to {
+  max-height: 0px;
+}
+
+.form-enter-to, .form-leave {
+  max-height: 1000px;
+}

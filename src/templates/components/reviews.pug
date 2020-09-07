@@ -9,8 +9,6 @@ script(type="text/x-template")#slider-container
             swiper-slide(v-for="review in reviews" :key="review.id" height="100%")
                 .quote
                     .quote__wrapper
-                        .quote__text
-                            p {{review.text}}
                         .quote__user
                             .user-display
                                 .avatar.user-display__avatar
@@ -19,3 +17,5 @@ script(type="text/x-template")#slider-container
                                 .user-display__data
                                     .user-display__name {{review.author}}
                                     .user-display__occ {{review.occ}}
+                        .quote__text
+                            p {{review.text}}

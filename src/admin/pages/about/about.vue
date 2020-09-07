@@ -104,7 +104,7 @@ export default {
         await this.editSkillAction(skill);
         skill.editmode = false;
         this.showTooltip({
-          text: "Данные навыки изменены",
+          text: "Навык успешно изменен",
           type: "success"
         })
       } catch (error) {
