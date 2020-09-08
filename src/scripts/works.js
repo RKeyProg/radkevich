@@ -21,10 +21,10 @@ const thumbs = {
             
             if (this.anim === "next") {
                 el.classList.add("nextOutsided");
-                list.style.transform = "translateX(-178px)";
+                list.style.transform = "translateX(-25%)";
             } else {
                 el.classList.add("prevOutsided");
-                list.style.transform = "translateX(178px)";
+                list.style.transform = "translateX(25%)";
             }
 
             list.addEventListener("transitionend", e => done());
