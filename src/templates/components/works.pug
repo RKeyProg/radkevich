@@ -33,9 +33,9 @@ script(type="text/x-template")#preview-thumbs
         tag="ul"
         :css="false"
 
-        @before-enter="beforeCb"
+        @before-enter="beforeEnterCb"
         @enter="enterCb"
-        @after-enter="afterCb"
+        @after-enter="afterEnterCb"
         @leave="leaveCb"
     ).thumbs
         li.thumbs__item(

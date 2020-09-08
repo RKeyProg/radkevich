@@ -28,7 +28,7 @@
     position: relative;
     width: 66%;
     z-index: 10;
-    height: 34vw;
+    height: 49vh;
     margin-right: 9vw;
 
 
@@ -56,6 +56,10 @@
         @include phones {
             display: none;
         }
+    }
+
+    @include desktopHd {
+        height: 34vw;
     }
 
     @include desktop {
