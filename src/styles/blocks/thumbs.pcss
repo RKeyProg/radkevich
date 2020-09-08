@@ -1,20 +1,32 @@
 .thumbs {
     justify-content: flex-end;
+    position: relative;
+    width: 712px;
+
+    @include desktop {
+        width: 100%;
+    }
+}
+
+.transition {
+    transition: 10s;
 }
 
 .thumbs__item {
     width: 178px;
+    max-height: 111px;
+    flex-shrink: 0;
     position: relative;
     outline-offset: -3px;
     outline: 3px solid transparent;
-    transition: all .3s;
+    overflow: hidden;
 
     &:hover, &.active {
         outline-color: #DC9322;
     }
 
     @include desktop {
-        width: 24%;
+        width: 25%;
     }
 }
 
@@ -24,7 +36,17 @@
     display: block;
 }
 
-.outsided {
+.nextOutsided {
     position: absolute;
     left: 100%;
+}
+
+.prevOutsided {
+    position: absolute;
+    right: 100%;
+}
+
+.fade {
+    transition: 10s;
+    opacity: 0;
 }

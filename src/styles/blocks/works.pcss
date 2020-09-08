@@ -94,6 +94,7 @@
     bottom: 10%;
     right: 0;
     z-index: $z-slider-btn;
+    overflow: hidden;
 
     @include phones {
         display: none;
@@ -164,8 +165,7 @@
   height: 100%; 
 }
 
-.fade-enter-active {
-    animation: enterSlider 1s;
+.next-enter-active, .prev-enter-active {
     position: absolute;
     top: 0;
     left: 0;
@@ -173,8 +173,7 @@
     height: 100%;
 }
 
-.fade-leave-active {
-    animation: leaveSlider 1s;
+.next-leave-active, .prev-leave-active {
     position: absolute;
     top: 0;
     left: 0;
@@ -182,13 +181,29 @@
     height: 100%;
 }
 
-@keyframes enterSlider {
+.next-enter-active {
+    animation: enterNextSlider 1s;
+}
+
+.prev-enter-active {
+    animation: enterPrevSlider 1s;
+}
+
+.next-leave-active {
+    animation: leaveNextSlider 1s;
+}
+
+.prev-leave-active {
+    animation: leavePrevSlider 1s;
+}
+
+@keyframes enterNextSlider {
     0% {
         transform: translateX(-1000px);
         opacity: 0;
     }
 
-    39% {
+    40% {
         opacity: 1;
     }
 
@@ -202,16 +217,58 @@
     }
 }
 
-@keyframes leaveSlider {
-    39% {
+@keyframes leaveNextSlider {
+    0% {
         opacity: 1;
     }
     
-    40% {
+    38% {
+        opacity: 1;
+    }
+
+    39% {
         opacity: 0;
     }
 
     100% {
+        opacity: 0;
+    }
+}
+
+@keyframes enterPrevSlider {
+    0% {
+        opacity: 0;
+    }
+
+    45% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes leavePrevSlider {
+    0% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+
+    40% {
+        transform: translateX(100px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-1000px);
         opacity: 0;
     }
 }

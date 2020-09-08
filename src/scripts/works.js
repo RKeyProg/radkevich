@@ -2,22 +2,78 @@ import Vue from "vue";
 import axios from "axios";
 
 const thumbs = {
-    props: ["currentWork", "works"],
-    template: "#preview-thumbs"
+    props: ["currentWork", "works", "anim"],
+    data() {
+        return {
+            disabled: false,
+        }
+    },
+    template: "#preview-thumbs",
+    methods: {
+        beforeCb() {
+            this.disabled = true;
+            this.$emit('isButtonDisabled', this.disabled);
+        },
+        enterCb(el, done) {
+            const list = el.closest("ul");
+
+            list.classList.add("transition");
+            
+            if (this.anim === "next") {
+                el.classList.add("nextOutsided");
+                list.style.transform = "translateX(-25%)";
+            } else {
+                el.classList.add("prevOutsided");
+                list.style.transform = "translateX(25%)";
+            }
+
+            list.addEventListener("transitionend", e => done());
+        },
+        afterCb(el) {
+            const list = el.closest("ul");
+
+            list.classList.remove("transition");
+            list.style.transform = "translateX(0px)";
+            el.classList.remove("nextOutsided");
+            el.classList.remove("prevOutsided");
+            this.disabled = false;
+            this.$emit('isButtonDisabled', this.disabled);
+        },
+        leaveCb(el, done) {
+            el.classList.add('fade');
+        },
+    }
 };
 
 const btns = {
+    props: {
+        disabled: Boolean,
+    },
     template: "#preview-btns",
 };
 
 const display = {
     props: ["currentWork", "works", "currentIndex"],
+    data() {
+        return {
+            disabled: false,
+            direction: "",
+        }
+    },
     template: "#preview-display",
     components: {thumbs, btns},
     computed: {
         selectingWorks() {
-            const works = [...this.works];
-            return works.slice(0,4);
+            return [...this.works].slice(0, 4);
+        }
+    },
+    methods: {
+        isDisabled(disabled) {
+            this.disabled = disabled;
+        },
+        whichPress(direction) {
+            this.direction = direction;
+            this.$emit('slide', direction);
         }
     }
 };
@@ -45,7 +101,7 @@ new Vue({
     data() {
         return {
             works: [],
-            currentIndex: 0
+            currentIndex: 0,
         }
     },
     computed: {
@@ -85,7 +141,7 @@ new Vue({
                     this.currentIndex--
                     break;
             }
-        }
+        },
     },
     async created() {
         const data = await axios.get('/works/370');
