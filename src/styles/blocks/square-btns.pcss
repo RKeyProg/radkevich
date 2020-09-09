@@ -35,6 +35,12 @@
         opacity: 1;
     }
 
+    &:disabled {
+        &:hover::after {
+            opacity: .5;
+        }
+    }
+
     @include desktop {
         width: 34px;
         height: 34px;

@@ -7,9 +7,11 @@
             Блок "Работы"
           </div>
         </div>
-        <div class="form" v-if="formVisible || Object.keys(this.currentWork).length !== 0">
-          <app-form @hide-form="hideForm" :form-name="formName" :edit-work-data="currentWork" />
-        </div>
+        <transition name="form" >
+          <div class="form" v-if="formVisible || Object.keys(this.currentWork).length !== 0">
+            <app-form @hide-form="hideForm" :form-name="formName" :edit-work-data="currentWork" />
+          </div>
+        </transition>
         <ul class="cards">
           <li class="item create-item">
             <square-btn 

@@ -40,6 +40,10 @@ export default {
 @import "../styles/mixins.pcss";
 @import "../styles/layout/base.pcss";
 
+textarea {
+  font-family: ope;
+}
+
 .page-component {
   flex: 1;
   display: flex;

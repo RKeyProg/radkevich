@@ -12,19 +12,32 @@ script(type="text/x-template")#preview-container
 
 script(type="text/x-template")#preview-display
     .works-preview__pictures(:data-slide="currentIndex + 1")
-        img(:src="currentWork.photo").works-preview__img
-        .works-preview__thumbs
-            thumbs(
-                :works="selectingWorks",
-                :currentWork="currentWork"
-            )
-        .works-preview__btns
-            btns(
-                @slide="direction => $emit('slide', direction)"
-            )
+        .works-preview__pictures-content
+            transition-group(:name="direction" tag="div" mode="out-in").works-preview__fullpic-container
+                img(:src="currentWork.photo" :key="currentWork.id").works-preview__img
+            .works-preview__thumbs
+                thumbs(
+                    :works="selectingWorks",
+                    :currentWork="currentWork"
+                    @isButtonDisabled="isDisabled"
+                    :anim="direction"
+                )
+            .works-preview__btns
+                btns(
+                    @slide="whichPress"
+                    :disabled="disabled"
+                )
 
 script(type="text/x-template")#preview-thumbs
-    ul.thumbs
+    transition-group(
+        tag="ul"
+        :css="false"
+
+        @before-enter="beforeEnterCb"
+        @enter="enterCb"
+        @after-enter="afterEnterCb"
+        @leave="leaveCb"
+    ).thumbs
         li.thumbs__item(
             v-for="slide in works" :key="slide.id"
             :class="{active: currentWork.id === slide.id}"
@@ -37,10 +50,12 @@ script(type="text/x-template")#preview-btns
         button(
             type="button"
             @click.prevent="$emit('slide', 'next')"
+            :disabled="disabled"
         ).square-btns__item.square-btns__item_next
         button(
             type="button"
             @click.prevent="$emit('slide', 'prev')"
+            :disabled="disabled"
         ).square-btns__item.square-btns__item_prev
 
 script(type="text/x-template")#preview-info
@@ -52,24 +67,9 @@ script(type="text/x-template")#preview-info
         .works-preview__desc
             p {{currentWork.description}}
         .works-preview__link 
-            a(href="").iconed-link Посмотреть сайт
+            a(:href="currentWork.link").iconed-link Посмотреть сайт
 
 script(type="text/x-template")#preview-tags
     ul.tags(v-if="tags.length")
         li.tags__item(v-for="tag in tags")
             .tag {{tag}}
-
-
-
-//- script(type="text/x-template")#preview-display
-//-     .works-preview__pictures(:data-slide="currentIndex + 1")
-            img(:src="currentWork.photo").works-preview__img
-//-         .works-preview__thumbs
-//-             thumbs(
-//-                 :works="selectingWorks",
-//-                 :currentWork="currentWork"
-//-             )
-//-         .works-preview__btns
-//-             btns(
-//-                 @slide="$emit('slide', $event)"
-//-             )
