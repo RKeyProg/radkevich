@@ -41,7 +41,7 @@ export default {
 @import "../styles/layout/base.pcss";
 
 textarea {
-  font-family: ope;
+  font-family: "Open sans", sans-serif;
 }
 
 .page-component {
