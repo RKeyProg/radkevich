@@ -1,9 +1,9 @@
-section.hero
+section.hero#hero
     .container.hero__container
         header.header
             .logo КР
-            +nav("menu", ['Обо мне', 'Навыки', 'Работы', 'Отзывы'])
-            +socials('socials', ['insta', 'github', 'vk', 'envelope'])
+            +nav("menu", {'Обо мне': "about", 'Навыки': "values__container", 'Работы': "works__container", 'Отзывы': "reviews"})
+            +socials('socials', {'insta': 'https://www.instagram.com/kirillradk/', 'github': 'https://github.com/RKeyProg', 'vk': 'https://vk.com/rkeyprog', 'envelope': 'mailto:rkey_prog@mail.ru'})
             button(type="button" @click="viewMobileMenu").hamburger
                 span.humburger__line
                 span.humburger__line
