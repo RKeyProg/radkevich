@@ -9,20 +9,20 @@ mixin image(path, className)
 mixin nav(className, items, activeClass)
   nav(class=`${className}`)
     ul(class=`${className}__list`)
-      each item in items
+      each itemVal, item in items
         li(class=`${className}__item`)
-          a(class=`${className}__link` href="#")= item
+          a(class=`${className}__link` href=`#${itemVal}`) #{item}
 
 mixin socials(className, items, modifier)
   ul(class=`${className}`)
-    each item in items
+    each itemVal, item in items
       if modifier
         li(class=`${className}__item ${modifier}`)
-          a(href="#" target="_blank" class=`${className}__link`)
+          a(href=`${itemVal}` target="_blank" class=`${className}__link`)
             +icon(`${item}`, `${className}__icon`)
       else
         li(class=`${className}__item`)
-          a(href="#" target="_blank" class=`${className}__link`)
+          a(href=`${itemVal}` target="_blank" class=`${className}__link`)
             +icon(`${item}`, `${className}__icon`)
 
 mixin data-table(className, items)

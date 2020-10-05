@@ -3,15 +3,15 @@ footer.footer
       .footer-person-info
         .footer__copyright © 2020
         .footer__userinfo
-          .footer__userinfo-name Владимир Астаханов
+          .footer__userinfo-name Кирилл Радкевич
           .footer__userinfo-title Личный сайт #[br] веб-разработчика
       .footer-info
-        +nav("footer__menu menu", ['Обо мне', 'Навыки', 'Работы', 'Отзывы'])
+        +nav("footer__menu menu", {'Обо мне': "about", 'Навыки': "values__container", 'Работы': "works__container", 'Отзывы': "reviews"})
         .footer-info__desc
           .footer-info__col.footer-info__col_left
             .footer-info__parag
-              p Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
-            +socials('socials', ['insta', 'vk', 'github', 'envelope'], 'socials_ring')
+              p Этот сайт я сделал в рамках технологической практики, которую я проходил.
+            +socials('socials', {'insta': 'https://www.instagram.com/kirillradk/', 'github': 'https://github.com/RKeyProg', 'vk': 'https://vk.com/rkeyprog', 'envelope': 'mailto:rkey_prog@mail.ru'}, 'socials_ring')
           .footer-info__col.footer-info__col_right
             .footer-info__parag
               p Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
