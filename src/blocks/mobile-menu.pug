@@ -1,6 +1,0 @@
-.mobile-menu(:style="styles")
-    button(type="button" @click="hideMobileMenu").mobile-menu__close
-        +icon('cross', 'mobile-menu__close-img')
-    .mobile-menu__content
-        +nav("mobile-nav menu", {'Главная': 'hero', 'Обо мне': "about", 'Навыки': "values__container", 'Работы': "works__container", 'Отзывы': "reviews"})
-        +socials('socials', {'insta': 'https://www.instagram.com/kirillradk/', 'github': 'https://github.com/RKeyProg', 'vk': 'https://vk.com/rkeyprog', 'envelope': 'mailto:rkey_prog@mail.ru'}, 'socials_color_dark')
